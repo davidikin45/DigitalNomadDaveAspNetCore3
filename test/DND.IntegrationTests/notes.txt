@@ -1,0 +1,7 @@
+﻿Must reference Microsoft.AspNetCore.Mvc.Testing
+
+10
+
+I just ran into this same issue and found the root cause to be quite obscure. From the documentation, the .deps files should be copied to the integration test project's bin directory. This wasn't happening for me because was not explicitly referencing the Microsoft.AspNetCore.Mvc.Testing package from my integration test project. I had created a shared library with some utility functions that referenced that nuget package, so my integration test project indirectly referenced it.
+
+There's some custom build tasks in the Microsoft.AspNetCore.Mvc.Testing package that copy the referenced service deps.json files for you, so you must reference it directly from the integration test project in order to get those build tasks to run.

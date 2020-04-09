@@ -1,0 +1,1 @@
+﻿By putting IRepository and IUnitOfWork interfaces in Domain the Infrastructure/Data assembly doesn't need a dependency on the Application Assembly => Allowing it to be easily swapped out.

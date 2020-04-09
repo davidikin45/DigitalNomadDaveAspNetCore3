@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DND.Web</name>
+    </assembly>
+    <members>
+        <member name="T:DND.Web.Resources.Url">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:DND.Web.Resources.Url.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:DND.Web.Resources.Url.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:DND.Web.Resources.Url.String1">
+            <summary>
+              Looks up a localized string similar to test.
+            </summary>
+        </member>
+    </members>
+</doc>

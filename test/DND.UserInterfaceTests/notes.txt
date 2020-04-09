@@ -1,0 +1,9 @@
+﻿-- SpecFlow --
+SpecFlow
+SpecFlow.xUnit
+SpecFlow.Tools.MsBuild.Generation
+SpecFlow.Assist.Dynamic
+
+-- Selenium --
+Selenium.WebDriver
+Selenium.WebDriver.ChromeDriver

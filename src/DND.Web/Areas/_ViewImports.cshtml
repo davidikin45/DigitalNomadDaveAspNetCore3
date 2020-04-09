@@ -1,0 +1,57 @@
+@using Microsoft.Extensions.Configuration
+@using Microsoft.AspNetCore.Http
+@using System.IO;
+@using System.Collections
+@using System.Threading
+@using Microsoft.AspNetCore.Mvc.ModelBinding
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Hosting
+@using AspNetCore.Mvc.Extensions
+
+@using AspNetCore.Mvc.Extensions.Dtos;
+@using AspNetCore.Mvc.Extensions.UI;
+@using AspNetCore.Mvc.Extensions.Settings;
+@using AspNetCore.Mvc.Extensions.Helpers;
+@using AspNetCore.Mvc.Extensions.Mapping;
+@using AspNetCore.Mvc.Extensions.Data.RepositoryFileSystem;
+@using AspNetCore.Mvc.Extensions.Alerts;
+@using AspNetCore.Mvc.Extensions.Services;
+
+@using DND.Domain.Identity;
+
+@using DND.Application
+@using DND.Domain.Blog.Locations
+
+@using DND.Application.Blog.Authors.Dtos;
+@using DND.Application.Blog.BlogPosts.Dtos;
+@using DND.Application.Blog.Categories.Dtos;
+@using DND.Application.Blog.Locations.Dtos;
+@using DND.Application.Blog.Tags.Dtos;
+
+@using DND.Application.CMS.CarouselItems.Dtos;
+@using DND.Application.CMS.ContentHtmls.Dtos;
+@using DND.Application.CMS.ContentTexts.Dtos;
+@using DND.Application.CMS.Faqs.Dtos;
+@using DND.Application.CMS.MailingLists.Dtos;
+@using DND.Application.CMS.Projects.Dtos;
+@using DND.Application.CMS.Testimonials.Dtos;
+
+@using DND.Web.Areas.Frontend.Controllers.Home
+@using DND.Web.Areas.Frontend.Controllers.Blog
+@using DND.Web.Areas.Frontend.Controllers.ContentHtml.ViewComponents
+@using DND.Web.Areas.Frontend.Controllers.ContentText.ViewComponents
+
+@using DND.Web.Controllers.Sidebar.Models
+@using DND.Web.Controllers.Sidebar.ViewComponents
+
+@using DND.Web.Areas.Identity.Controllers.Account;
+@using DND.Web.Areas.Identity.Controllers.Account.Models;
+@using DND.Web.Areas.Identity.Controllers.Authorization;
+@using DND.Web.Areas.Identity.Controllers.Manage;
+@using DND.Web.Areas.Identity.Controllers.Manage.Models;
+
+@using StackExchange.Profiling
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AspNetCore.Mvc.Extensions
+@addTagHelper *, MiniProfiler.AspNetCore.Mvc

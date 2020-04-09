@@ -1,0 +1,4 @@
+1. Drop Tables and Delete Website
+2. Deploy/Migrate
+3. Delete DB data
+4. Upload DB Data and Website files
