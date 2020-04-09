@@ -78,6 +78,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="appsettings.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="appsettings.Integration.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Resources\Url.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Url.es.Designer.cs</LastGenOutput>
