@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DND.Data.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20200408202248_InitialCreate")]
+    [Migration("20200410061926_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,80 +22,6 @@ namespace DND.Data.Migrations
                 .HasAnnotation("SqlServer:IdentityIncrement", 1)
                 .HasAnnotation("SqlServer:IdentitySeed", 1)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("AspNetCore.Mvc.Extensions.DomainEvents.DomainEvent", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("AuthorId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("BlogPostId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CarouselItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ContentHtmlId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ContentTextId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("FaqId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LocationId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MailingListId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TagId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TestimonialId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("BlogPostId");
-
-                    b.HasIndex("CarouselItemId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("ContentHtmlId");
-
-                    b.HasIndex("ContentTextId");
-
-                    b.HasIndex("FaqId");
-
-                    b.HasIndex("LocationId");
-
-                    b.HasIndex("MailingListId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasIndex("TagId");
-
-                    b.HasIndex("TestimonialId");
-
-                    b.ToTable("DomainEvent");
-                });
 
             modelBuilder.Entity("DND.Domain.Blog.Authors.Author", b =>
                 {
@@ -672,57 +598,6 @@ namespace DND.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Testimonial");
-                });
-
-            modelBuilder.Entity("AspNetCore.Mvc.Extensions.DomainEvents.DomainEvent", b =>
-                {
-                    b.HasOne("DND.Domain.Blog.Authors.Author", null)
-                        .WithMany("DomainEvents")
-                        .HasForeignKey("AuthorId");
-
-                    b.HasOne("DND.Domain.Blog.BlogPosts.BlogPost", null)
-                        .WithMany("DomainEvents")
-                        .HasForeignKey("BlogPostId");
-
-                    b.HasOne("DND.Domain.CMS.CarouselItems.CarouselItem", null)
-                        .WithMany("DomainEvents")
-                        .HasForeignKey("CarouselItemId");
-
-                    b.HasOne("DND.Domain.Blog.Categories.Category", null)
-                        .WithMany("DomainEvents")
-                        .HasForeignKey("CategoryId");
-
-                    b.HasOne("DND.Domain.CMS.ContentHtmls.ContentHtml", null)
-                        .WithMany("DomainEvents")
-                        .HasForeignKey("ContentHtmlId");
-
-                    b.HasOne("DND.Domain.CMS.ContentTexts.ContentText", null)
-                        .WithMany("DomainEvents")
-                        .HasForeignKey("ContentTextId");
-
-                    b.HasOne("DND.Domain.CMS.Faqs.Faq", null)
-                        .WithMany("DomainEvents")
-                        .HasForeignKey("FaqId");
-
-                    b.HasOne("DND.Domain.Blog.Locations.Location", null)
-                        .WithMany("DomainEvents")
-                        .HasForeignKey("LocationId");
-
-                    b.HasOne("DND.Domain.CMS.MailingLists.MailingList", null)
-                        .WithMany("DomainEvents")
-                        .HasForeignKey("MailingListId");
-
-                    b.HasOne("DND.Domain.CMS.Projects.Project", null)
-                        .WithMany("DomainEvents")
-                        .HasForeignKey("ProjectId");
-
-                    b.HasOne("DND.Domain.Blog.Tags.Tag", null)
-                        .WithMany("DomainEvents")
-                        .HasForeignKey("TagId");
-
-                    b.HasOne("DND.Domain.CMS.Testimonials.Testimonial", null)
-                        .WithMany("DomainEvents")
-                        .HasForeignKey("TestimonialId");
                 });
 
             modelBuilder.Entity("DND.Domain.Blog.BlogPosts.BlogPost", b =>

@@ -357,102 +357,6 @@ namespace DND.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "DomainEvent",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false),
-                    AuthorId = table.Column<int>(nullable: true),
-                    BlogPostId = table.Column<int>(nullable: true),
-                    CarouselItemId = table.Column<int>(nullable: true),
-                    CategoryId = table.Column<int>(nullable: true),
-                    ContentHtmlId = table.Column<string>(nullable: true),
-                    ContentTextId = table.Column<string>(nullable: true),
-                    FaqId = table.Column<int>(nullable: true),
-                    LocationId = table.Column<int>(nullable: true),
-                    MailingListId = table.Column<int>(nullable: true),
-                    ProjectId = table.Column<int>(nullable: true),
-                    TagId = table.Column<int>(nullable: true),
-                    TestimonialId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DomainEvent", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DomainEvent_Author_AuthorId",
-                        column: x => x.AuthorId,
-                        principalTable: "Author",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DomainEvent_BlogPost_BlogPostId",
-                        column: x => x.BlogPostId,
-                        principalTable: "BlogPost",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DomainEvent_CarouselItem_CarouselItemId",
-                        column: x => x.CarouselItemId,
-                        principalTable: "CarouselItem",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DomainEvent_Category_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Category",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DomainEvent_ContentHtml_ContentHtmlId",
-                        column: x => x.ContentHtmlId,
-                        principalTable: "ContentHtml",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DomainEvent_ContentText_ContentTextId",
-                        column: x => x.ContentTextId,
-                        principalTable: "ContentText",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DomainEvent_Faq_FaqId",
-                        column: x => x.FaqId,
-                        principalTable: "Faq",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DomainEvent_Location_LocationId",
-                        column: x => x.LocationId,
-                        principalTable: "Location",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DomainEvent_MailingList_MailingListId",
-                        column: x => x.MailingListId,
-                        principalTable: "MailingList",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DomainEvent_Project_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Project",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DomainEvent_Tag_TagId",
-                        column: x => x.TagId,
-                        principalTable: "Tag",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DomainEvent_Testimonial_TestimonialId",
-                        column: x => x.TestimonialId,
-                        principalTable: "Testimonial",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_BlogPost_AuthorId",
                 table: "BlogPost",
@@ -472,66 +376,6 @@ namespace DND.Data.Migrations
                 name: "IX_BlogPostTag_TagId",
                 table: "BlogPostTag",
                 column: "TagId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DomainEvent_AuthorId",
-                table: "DomainEvent",
-                column: "AuthorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DomainEvent_BlogPostId",
-                table: "DomainEvent",
-                column: "BlogPostId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DomainEvent_CarouselItemId",
-                table: "DomainEvent",
-                column: "CarouselItemId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DomainEvent_CategoryId",
-                table: "DomainEvent",
-                column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DomainEvent_ContentHtmlId",
-                table: "DomainEvent",
-                column: "ContentHtmlId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DomainEvent_ContentTextId",
-                table: "DomainEvent",
-                column: "ContentTextId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DomainEvent_FaqId",
-                table: "DomainEvent",
-                column: "FaqId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DomainEvent_LocationId",
-                table: "DomainEvent",
-                column: "LocationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DomainEvent_MailingListId",
-                table: "DomainEvent",
-                column: "MailingListId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DomainEvent_ProjectId",
-                table: "DomainEvent",
-                column: "ProjectId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DomainEvent_TagId",
-                table: "DomainEvent",
-                column: "TagId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DomainEvent_TestimonialId",
-                table: "DomainEvent",
-                column: "TestimonialId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -541,12 +385,6 @@ namespace DND.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "BlogPostTag");
-
-            migrationBuilder.DropTable(
-                name: "DomainEvent");
-
-            migrationBuilder.DropTable(
-                name: "BlogPost");
 
             migrationBuilder.DropTable(
                 name: "CarouselItem");
@@ -561,19 +399,22 @@ namespace DND.Data.Migrations
                 name: "Faq");
 
             migrationBuilder.DropTable(
-                name: "Location");
-
-            migrationBuilder.DropTable(
                 name: "MailingList");
 
             migrationBuilder.DropTable(
                 name: "Project");
 
             migrationBuilder.DropTable(
-                name: "Tag");
+                name: "Testimonial");
 
             migrationBuilder.DropTable(
-                name: "Testimonial");
+                name: "Location");
+
+            migrationBuilder.DropTable(
+                name: "BlogPost");
+
+            migrationBuilder.DropTable(
+                name: "Tag");
 
             migrationBuilder.DropTable(
                 name: "Author");

@@ -64,7 +64,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNetCore.Mvc.Extensions" Version="1.0.27" />
+    <PackageReference Include="AspNetCore.Mvc.Extensions" Version="1.0.28" />
     <PackageReference Include="AutoMapper.Collection" Version="6.0.0" />
   </ItemGroup>
 

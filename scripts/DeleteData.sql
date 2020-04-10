@@ -1,0 +1,14 @@
+DELETE FROM Project;
+DELETE FROM Testimonial;
+DELETE FROM BlogPostLocation;
+DELETE FROM BlogPostTag;
+DELETE FROM BlogPost;
+DELETE FROM CarouselItem;
+DELETE FROM Category;
+DELETE FROM Author;
+DELETE FROM Tag;
+DELETE FROM [Location];
+DELETE FROM ContentHtml;
+DELETE FROM ContentText;
+DELETE FROM Faq;
+DELETE FROM MailingList;
