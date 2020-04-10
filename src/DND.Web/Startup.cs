@@ -117,10 +117,10 @@ namespace DND.Web
         public override void AddStartupTasks(IServiceCollection services)
         {
             services.AddStartupTask<HangfireScheduledJobs>();
-            services.AddStartupTask<CqrsCommandsTask>();
-            services.AddStartupTask<CqrsQueriesTask>();
-            services.AddStartupTask<DomainEventsTask>();
-            services.AddStartupTask<IntegrationEventsTask>();
+            //services.AddStartupTask<CqrsCommandsTask>();
+            //services.AddStartupTask<CqrsQueriesTask>();
+            //services.AddStartupTask<DomainEventsTask>();
+            //services.AddStartupTask<IntegrationEventsTask>();
         }
 
         public override void AddHostedServices(IServiceCollection services)
