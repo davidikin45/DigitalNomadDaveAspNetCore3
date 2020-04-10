@@ -40,6 +40,7 @@ using Hangfire;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -57,7 +58,7 @@ namespace DND.Web
         public override void AddDatabases(IServiceCollection services, ConnectionStrings connectionStrings, string identityConnectionString, string hangfireConnectionString, string defaultConnectionString)
         {
             services.AddDbContextNoSql<NoSqlContext>(connectionStrings["NoSqlConnection"]);
-            services.AddDbContext<AppContext>(defaultConnectionString);
+            services.AddDbContext<DND.Data.AppContext>(defaultConnectionString);
             services.AddDbContext<IdentityContext>(identityConnectionString);
         }
 
@@ -160,16 +161,17 @@ namespace DND.Web
 
     public class HangfireScheduledJobs : StartupTaskBlocking
     {
-        private readonly IRecurringJobManager _recurringJobManager;
-        public HangfireScheduledJobs(IRecurringJobManager recurringJobManager)
+        public HangfireScheduledJobs(IServiceProvider serviceProvider)
+        : base(serviceProvider)
         {
-            _recurringJobManager = recurringJobManager;
+           
         }
 
         public override int Order => 0;
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override Task ExecuteAsync(IServiceProvider scopedServiceProvider, CancellationToken stoppingToken)
         {
+            var recurringJobManager = scopedServiceProvider.GetRequiredService<IRecurringJobManager>();
             //_recurringJobManager.AddOrUpdate("check-link", Job.FromExpression<Job1>(m => m.Execute()), Cron.Minutely(), new RecurringJobOptions());
             //_recurringJobManager.Trigger("check-link");
 
@@ -183,12 +185,13 @@ namespace DND.Web
 
         public override int Order => 0;
 
-        public CqrsCommandsTask(ICqrsMediator mediator)
+        public CqrsCommandsTask(IServiceProvider serviceProvider, ICqrsMediator mediator)
+             : base(serviceProvider)
         {
             _mediator = mediator;
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override Task ExecuteAsync(IServiceProvider scopedServiceProvider, CancellationToken stoppingToken)
         {
             _mediator.CqrsCommandSubscriptionManager.AddDynamicSubscription<object, CommandHandler>("*");
             return Task.CompletedTask;
@@ -201,12 +204,13 @@ namespace DND.Web
 
         public override int Order => 0;
 
-        public CqrsQueriesTask(ICqrsMediator mediator)
+        public CqrsQueriesTask(IServiceProvider serviceProvider, ICqrsMediator mediator)
+             : base(serviceProvider)
         {
             _mediator = mediator;
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override Task ExecuteAsync(IServiceProvider scopedServiceProvider, CancellationToken stoppingToken)
         {
             _mediator.CqrsQuerySubscriptionManager.AddDynamicSubscription<object, QueryHandler>("*");
             return Task.CompletedTask;
@@ -219,12 +223,13 @@ namespace DND.Web
 
         public override int Order => 0;
 
-        public DomainEventsTask(IDomainEventBus eventBus)
+        public DomainEventsTask(IServiceProvider serviceProvider, IDomainEventBus eventBus)
+             : base(serviceProvider)
         {
             _eventBus = eventBus;
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override Task ExecuteAsync(IServiceProvider scopedServiceProvider, CancellationToken stoppingToken)
         {
             _eventBus.DomainEventSubscriptionsManager.AddDynamicSubscription<DomainEventHandler>("*");
             return Task.CompletedTask;
@@ -237,12 +242,13 @@ namespace DND.Web
 
         public override int Order => 0;
 
-        public IntegrationEventsTask(IIntegrationEventBus eventBus)
+        public IntegrationEventsTask(IServiceProvider serviceProvider, IIntegrationEventBus eventBus)
+             : base(serviceProvider)
         {
             _eventBus = eventBus;
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override Task ExecuteAsync(IServiceProvider scopedServiceProvider, CancellationToken stoppingToken)
         {
             return Task.CompletedTask;
         }
