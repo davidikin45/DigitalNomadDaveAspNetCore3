@@ -15,7 +15,7 @@
         .ToList();
 }
 
-<form id="selectLanguage" asp-area="Frontend" asp-controller="Home"
+<form id="selectLanguage" asp-area="Frontend" asp-controller="Home" asp-antiforgery="false"
       asp-action="SetLanguageUrl" asp-route-path="@path"
       method="post" class="form-inline my-2 my-md-0 hidden-lg-down" role="form">
      <select name="culture" class="form-control" onchange="this.form.submit()"

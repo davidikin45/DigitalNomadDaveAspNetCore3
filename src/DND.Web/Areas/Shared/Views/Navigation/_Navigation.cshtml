@@ -42,9 +42,9 @@
                         @(Html.MenuLink("Identity", "Manage", "Index", "Manage", "nav-link", "fa-cog"))
                     </li>
                     <li class="nav-item">
-                        @using (Html.BeginForm("LogOut", "Account", new { area = "Identity"}, FormMethod.Post, false, new { id = "logoutForm" }))
+                        @using (Html.BeginForm("LogOut", "Account", new { area = "Identity" }, FormMethod.Post, false, new { id = "logoutForm" }))
                         {
-                            @Html.AntiForgeryToken()
+                            @*@Html.AntiForgeryToken()*@
                             <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()" title="Sign Out">
                                 <i class="fa fa-sign-out"></i>
                             </a>
@@ -76,7 +76,7 @@
                         @(Html.MenuLink("Identity", "Manage", "Index", "Manage", ""))
                         using (Html.BeginForm("LogOff", "Account", new { area = "Identity"}, FormMethod.Post, false, new { id = "logoutForm" }))
                         {
-                            @Html.AntiForgeryToken()
+                            @*@Html.AntiForgeryToken()*@
                             <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
                         }
                     }
