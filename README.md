@@ -107,6 +107,45 @@ Publish DND.Web
 * [RobotsTxtMiddleware](https://github.com/karl-sjogren/robots-txt-middleware/blob/master/README.md)
 * [Conveyor](https://marketplace.visualstudio.com/items?itemName=vs-publisher-1448185.ConveyorbyKeyoti)
 
+## Functionality and Patterns
+* Email
+* PDF, CSV, Excel Generation
+* MultiTenancy
+* Url Location
+* Content Localization
+* Response Caching
+* Middleware
+* Ambient Route Values
+* Health Checks
+* Razor Class Libraries
+* Worker Services
+* Application Parts
+* Background Tasks (Hosted Services and Hangfire)
+* Entity Framework (SQLServer, SQLite, InMemory)
+* Database Initialization
+* UoW/Repository Pattern
+* Richardson Maturity Model Level 3 API
+* Automapping
+* Domain Driven Design Modelling
+* DTO Modelling
+* Validation
+* Domain Events
+* Integration Events
+* HttpClient
+* JWT Authentication
+* ASP.NET Core Identity
+* OpenIDConnect + IdentityServer
+* CQRS 
+* Specification Pattern
+* Clean Architecture
+* SignalR
+* Configuration and options pattern
+* Dependency Injection using Autofac
+* Logging using Serilog
+* Intergration Tests using WebApplicationFactory
+* UI Tests using SpecFlow and Selenium
+* Unit Tests using Moq
+
 ## Authors
 
 * **Dave Ikin** - [davidikin45](https://github.com/davidikin45)
