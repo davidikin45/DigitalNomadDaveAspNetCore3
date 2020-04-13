@@ -37,7 +37,7 @@ namespace DND.Data
             }
             else
             {
-                var dbInitializer = new AppContextInitializerDropMigrate();
+                var dbInitializer = new AppContextInitializerDropCreate();
                 await dbInitializer.InitializeAsync(context);
             }
         }

@@ -40,7 +40,7 @@ namespace DND.Data.Identity
             }
             else
             {
-                var migrationInitializer = new IdentityContextInitializerDropMigrate(passwordHasher);
+                var migrationInitializer = new IdentityContextInitializerDropCreate(passwordHasher);
                 await migrationInitializer.InitializeAsync(context);
             }
         }
