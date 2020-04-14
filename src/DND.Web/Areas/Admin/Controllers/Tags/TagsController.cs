@@ -5,10 +5,12 @@ using AutoMapper;
 using DND.Application;
 using DND.Application.Blog.Tags.Dtos;
 using DND.Application.Blog.Tags.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DND.Web.Areas.Admin.Controllers.Tags
 {
+    [Authorize(Roles = "admin")]
     [Area("Admin")]
     [ResourceCollection(ResourceCollections.Blog.Tags.CollectionId)]
     [Route("admin/blog/tags")]

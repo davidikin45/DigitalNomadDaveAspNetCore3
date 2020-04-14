@@ -6,11 +6,13 @@ using AspNetCore.Mvc.Extensions.Settings;
 using AutoMapper;
 using DND.Application;
 using DND.Common.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DND.Web.Areas.Admin.Controllers.Home
 {
+    [Authorize(Roles = "admin")]
     [Area("Admin")]
     [Route("admin/folder-metadata")]
     public class FolderMetadataController : MvcControllerFolderMetadataAuthorizeBase

@@ -4,11 +4,13 @@ using AspNetCore.Mvc.Extensions.Controllers.Api;
 using DND.Application;
 using DND.Application.Blog.BlogPosts.Dtos;
 using DND.Application.Blog.BlogPosts.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
 namespace DND.Web.ApiControllers.Blog
 {
+    [Authorize(Roles = "admin")]
     [ResourceCollection(ResourceCollections.Blog.BlogPosts.CollectionId)]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/blog/blog-posts")]

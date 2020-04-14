@@ -4,10 +4,12 @@ using AspNetCore.Mvc.Extensions.Controllers.Mvc;
 using DND.Application;
 using DND.Application.Blog.Locations.Dtos;
 using DND.Application.Blog.Locations.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DND.Web.Areas.Admin.Controllers.Locations
 {
+    [Authorize(Roles = "admin")]
     [Area("Admin")]
     [ResourceCollection(ResourceCollections.Blog.Locations.CollectionId)]
     [Route("admin/blog/locations")]

@@ -4,10 +4,12 @@ using AspNetCore.Mvc.Extensions.Controllers.Mvc;
 using DND.Application;
 using DND.Application.CMS.Faqs.Dtos;
 using DND.Application.CMS.Faqs.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DND.Web.Areas.Admin.Controllers.Faqs
 {
+    [Authorize(Roles = "admin")]
     [Area("Admin")]
     [ResourceCollection(ResourceCollections.CMS.Faqs.CollectionId)]
     [Route("admin/cms/faqs")]

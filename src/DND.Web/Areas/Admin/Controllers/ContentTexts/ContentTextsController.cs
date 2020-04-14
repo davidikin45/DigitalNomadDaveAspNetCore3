@@ -5,10 +5,12 @@ using AutoMapper;
 using DND.Application;
 using DND.Application.CMS.ContentTexts.Dtos;
 using DND.Application.CMS.ContentTexts.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DND.Web.Areas.Admin.Controllers.ContentTexts
 {
+    [Authorize(Roles = "admin")]
     [Area("Admin")]
     [ResourceCollection(ResourceCollections.CMS.ContentTexts.CollectionId)]
     [Route("admin/cms/content-texts")]

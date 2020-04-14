@@ -6,11 +6,13 @@ using AspNetCore.Mvc.Extensions.Email;
 using AspNetCore.Mvc.Extensions.Settings;
 using AutoMapper;
 using DND.Application;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DND.Web.Areas.Admin.Controllers.Home
 {
+    [Authorize(Roles = "admin")]
     [Area("Admin")]
     [Route("admin/file-metadata")]
     public class FileMetadataController : MvcControllerFileMetadataAuthorizeBase

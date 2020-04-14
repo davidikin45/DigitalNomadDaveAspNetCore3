@@ -4,10 +4,12 @@ using AspNetCore.Mvc.Extensions.Controllers.Mvc;
 using DND.Application;
 using DND.Application.CMS.ContentHtmls.Dtos;
 using DND.Application.CMS.ContentHtmls.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DND.Web.Areas.Admin.Controllers.ContentHtmls
 {
+    [Authorize(Roles = "admin")]
     [Area("Admin")]
     [ResourceCollection(ResourceCollections.CMS.ContentHtmls.CollectionId)]
     [Route("admin/cms/content-htmls")]

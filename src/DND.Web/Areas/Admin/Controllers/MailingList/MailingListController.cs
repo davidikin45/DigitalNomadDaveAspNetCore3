@@ -9,6 +9,7 @@ using DND.Application;
 using DND.Application.CMS.MailingLists.Dtos;
 using DND.Application.CMS.MailingLists.Services;
 using DND.Web.Areas.Admin.Controllers.MailingList.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ using System.Threading.Tasks;
 
 namespace DND.Web.Areas.Admin.Controllers.MailingList
 {
+    [Authorize(Roles = "admin")]
     [Area("Admin")]
     [ResourceCollection(ResourceCollections.CMS.MailingList.CollectionId)]
     [Route("admin/cms/mailing-list")]

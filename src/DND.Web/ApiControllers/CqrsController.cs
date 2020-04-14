@@ -9,7 +9,7 @@ namespace DND.Web.ApiControllers
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/cqrs")]
-    public class CqrsController : ApiControllerCqrsBase
+    public class CqrsController : ApiControllerCqrsAuthorizeBase
     {
         public CqrsController(ControllerServicesContext context, ICqrsMediator cqrsMediator)
             : base(context, cqrsMediator)

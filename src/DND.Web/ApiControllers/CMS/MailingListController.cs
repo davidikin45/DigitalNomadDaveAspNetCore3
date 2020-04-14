@@ -4,11 +4,13 @@ using AspNetCore.Mvc.Extensions.Controllers.Api;
 using DND.Application;
 using DND.Application.CMS.MailingLists.Dtos;
 using DND.Application.CMS.MailingLists.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
 namespace DND.Web.ApiControllers.CMS
 {
+    [Authorize(Roles = "admin")]
     [ResourceCollection(ResourceCollections.CMS.MailingList.CollectionId)]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/cms/mailing-list")]
