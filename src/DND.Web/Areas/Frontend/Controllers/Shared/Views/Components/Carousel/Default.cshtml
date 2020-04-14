@@ -20,10 +20,10 @@
 
         @foreach (BlogPostDto post in Model.Posts)
         {
-            var mainPhoto = FileHelper.GetFileInfo(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Gallery]) + post.CarouselImage);
+            var mainPhoto = FileHelper.GetFileInfo(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", post.CarouselImage)));
             if (mainPhoto == null)
             {
-                mainPhoto = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Gallery]) + post.Album).MainPhotoOrVideo();
+                mainPhoto = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", post.Album))).MainPhotoOrVideo();
             }
 
             //var isVideo = mainPhoto.IsVideo();

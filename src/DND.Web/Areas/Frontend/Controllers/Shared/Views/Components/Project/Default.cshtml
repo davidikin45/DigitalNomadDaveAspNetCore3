@@ -19,11 +19,11 @@
                 bool isVideo = false;
                 bool isImage = false;
                 bool isText = false;
-                var media = FileHelper.GetFileInfo(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Projects]) + project.File);
+                var media = FileHelper.GetFileInfo(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", project.File)));
 
                 if (media == null)
                 {
-                    media = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Gallery]) + project.Album).MainPhotoOrVideoOrText();
+                    media = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", project.Album))).MainPhotoOrVideoOrText();
                 }
 
                 if (media != null)

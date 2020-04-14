@@ -16,7 +16,7 @@
                         bool isVideo = false;
                         bool isImage = false;
                         bool isText = false;
-                        var mainPhoto = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Gallery]) + post.Album).MainPhotoOrVideoOrText();
+                        var mainPhoto = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", post.Album))).MainPhotoOrVideoOrText();
                         if (mainPhoto != null)
                         {
                             isVideo = mainPhoto.IsVideo();

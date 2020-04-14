@@ -3,7 +3,7 @@
 @inject AppSettings appSettings
 
 @{
-    var mainPhotoVideoText = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Gallery]) + Model.Album).MainPhotoOrVideoOrText();
+    var mainPhotoVideoText = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", Model.Album))).MainPhotoOrVideoOrText();
     var mainImageShare = "";
     if (mainPhotoVideoText != null)
     {

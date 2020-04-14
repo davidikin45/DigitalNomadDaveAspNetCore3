@@ -3,7 +3,7 @@
 @inject IWebHostEnvironment hostingEnvironment
 
 @{
-    var mainPhotoVideo = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Gallery]) + Model.Album).MainPhotoOrVideo();
+    var mainPhotoVideo = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", Model.Album))).MainPhotoOrVideo();
     var mainImageShare = mainPhotoVideo != null ? mainPhotoVideo.AbsoluteShareUrlSlug(appSettings, hostingEnvironment) : "";
 
     ViewBag.PageTitle = Model.Name;

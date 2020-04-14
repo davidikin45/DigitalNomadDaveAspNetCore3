@@ -4,7 +4,7 @@
 @inject IFileSystemGenericRepositoryFactory fileSystemGenericRepositoryFactory
 
 @{
-    var mainPhotoVideoText = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Gallery]) + Model.Album).MainPhotoOrVideoOrText();
+    var mainPhotoVideoText = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", Model.Album))).MainPhotoOrVideoOrText();
 
     var mainImageShare = "";
     if (mainPhotoVideoText != null)
@@ -124,10 +124,10 @@ else
         }
 
         @Html.Raw(Model.Description)
-        @if (Model.ShowPhotosInAlbum && !string.IsNullOrEmpty(Model.Album) && FileHelper.FolderExists(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Gallery]) + Model.Album))
+        @if (Model.ShowPhotosInAlbum && !string.IsNullOrEmpty(Model.Album) && FileHelper.FolderExists(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", Model.Album))))
         {
             <div class="card-columns-md-2 card-spacer-bottom">
-                @foreach (FileInfo file in fileSystemGenericRepositoryFactory.CreateFileRepositoryReadOnly(default(CancellationToken), hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Gallery]) + Model.Album, true, "*.*", ".jpg", ".jpeg", ".mp4", ".avi", ".txt").GetAll(UIHelper.GetOrderByIQueryableDelegate<FileInfo>
+                @foreach (FileInfo file in fileSystemGenericRepositoryFactory.CreateFileRepositoryReadOnly(default(CancellationToken), hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", Model.Album)), true, "*.*", ".jpg", ".jpeg", ".mp4", ".avi", ".txt").GetAll(UIHelper.GetOrderByIQueryableDelegate<FileInfo>
         (nameof(FileInfo.LastWriteTime) + " desc"), null, null))
                 {
                     if (mainPhotoVideoText == null || mainPhotoVideoText.FullName != file.FullName)

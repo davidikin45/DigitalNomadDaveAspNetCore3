@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNetCore.Mvc.Extensions" Version="1.0.33" />
+    <PackageReference Include="AspNetCore.Mvc.Extensions" Version="1.0.34" />
   </ItemGroup>
 
 </Project>

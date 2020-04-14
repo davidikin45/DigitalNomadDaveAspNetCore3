@@ -18,7 +18,7 @@
 </form>
 
 <div class="card-columns card-columns-sm-1 card-columns-md-2 card-columns-lg-2 card-columns-xl-2">
-    @foreach (var location in Model.Data.Where(l => !string.IsNullOrEmpty(l.Album) && FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Gallery]) + l.Album) != null))
+    @foreach (var location in Model.Data.Where(l => !string.IsNullOrEmpty(l.Album) && FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", l.Album))) != null))
     {
         var mainPhoto = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Gallery]) + location.Album).MainPhotoOrVideo();
         if (mainPhoto != null)

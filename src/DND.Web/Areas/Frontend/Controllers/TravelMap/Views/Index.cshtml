@@ -13,9 +13,9 @@
     {
         bool outputImage = false;
 
-        if (!item.CurrentLocation && !string.IsNullOrEmpty(item.Album) && FileHelper.FolderExists(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Gallery]) + item.Album))
+        if (!item.CurrentLocation && !string.IsNullOrEmpty(item.Album) && FileHelper.FolderExists(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", item.Album))))
         {
-            var mainPhoto = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Gallery]) + item.Album).MainPhotoOrVideoOrText();
+            var mainPhoto = FileHelper.GetDirectoryInfo(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", item.Album))).MainPhotoOrVideoOrText();
             if (mainPhoto != null)
             {
                 outputImage = true;
