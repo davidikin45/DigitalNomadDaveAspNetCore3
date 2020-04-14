@@ -14,7 +14,7 @@
             @Html.Raw(@"<div class=""card-deck"">")
         }
         <div class="card mb-4">
-            @if ((!string.IsNullOrEmpty(project.File) && FileHelper.FileExists(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Projects]) + project.File)) || (!string.IsNullOrEmpty(project.Album) && FileHelper.FolderExists(hostingEnvironment.MapWwwPath(appSettings.Folders[Folders.Gallery]) + project.Album)))
+            @if ((!string.IsNullOrEmpty(project.File) && FileHelper.FileExists(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", project.File)))) || (!string.IsNullOrEmpty(project.Album) && FileHelper.FolderExists(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", project.Album)))))
             {
                 bool isVideo = false;
                 bool isImage = false;
