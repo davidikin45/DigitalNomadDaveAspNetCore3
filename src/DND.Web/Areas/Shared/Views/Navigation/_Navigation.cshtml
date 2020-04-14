@@ -34,7 +34,7 @@
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
             }
 
-            <ul class="navbar-nav">
+            @*<ul class="navbar-nav">
                 @if (User.Identity.IsAuthenticated)
                 {
 
@@ -44,7 +44,7 @@
                     <li class="nav-item">
                         @using (Html.BeginForm("LogOut", "Account", new { area = "Identity" }, FormMethod.Post, false, new { id = "logoutForm" }))
                         {
-                            @*@Html.AntiForgeryToken()*@
+                            @Html.AntiForgeryToken()
                             <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()" title="Sign Out">
                                 <i class="fa fa-sign-out"></i>
                             </a>
@@ -58,8 +58,7 @@
                         @(Html.MenuLink("Identity", "Account", "Login", "Sign In", "nav-link", "fa-sign-in"))
                     </li>
                 }
-                @*<locale-market-currency></locale-market-currency>*@
-            </ul>
+            </ul>*@
 
         </div>
 
@@ -71,15 +70,15 @@
                     {
                         <a href="@(Url.Action((string)menuItem.Action,(string)menuItem.Controller))">@((string)menuItem.LinkText)</a>
                     }
-                    @if (User.Identity.IsAuthenticated)
+                    @*@if (User.Identity.IsAuthenticated)
                     {
                         @(Html.MenuLink("Identity", "Manage", "Index", "Manage", ""))
                         using (Html.BeginForm("LogOff", "Account", new { area = "Identity"}, FormMethod.Post, false, new { id = "logoutForm" }))
                         {
-                            @*@Html.AntiForgeryToken()*@
+                            @Html.AntiForgeryToken()
                             <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
                         }
-                    }
+                    }*@
                 </div>
 
                 @*<div class="nav">
