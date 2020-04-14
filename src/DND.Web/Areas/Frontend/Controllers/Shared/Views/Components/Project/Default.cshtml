@@ -19,7 +19,11 @@
                 bool isVideo = false;
                 bool isImage = false;
                 bool isText = false;
-                var media = FileHelper.GetFileInfo(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", project.File)));
+                FileInfo media = null;
+                if(!string.IsNullOrEmpty(project.File))
+                {
+                    media = FileHelper.GetFileInfo(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", project.File)));
+                }
 
                 if (media == null)
                 {
