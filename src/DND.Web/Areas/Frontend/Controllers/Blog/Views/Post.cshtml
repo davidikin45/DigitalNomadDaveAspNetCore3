@@ -143,7 +143,7 @@ else
         {
             foreach (BlogPostLocationDto location in Model.Locations.OrderBy(l => l.Location.CreatedOn))
             {
-                <partial name="@("~/" + (appSettings.MvcImplementationFolder) + "Locations/Views/_Location.cshtml")" model="@location.Location" />
+                <partial name="@("~/Areas/Frontend/" + (appSettings.MvcImplementationFolder) + "Locations/Views/_Location.cshtml")" model="@location.Location" />
             }
         }
 
