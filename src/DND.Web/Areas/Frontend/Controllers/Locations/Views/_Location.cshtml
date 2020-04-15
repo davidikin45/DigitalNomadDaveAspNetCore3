@@ -30,7 +30,7 @@
 @if (!string.IsNullOrEmpty(Model.Album) && FileHelper.FolderExists(hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", Model.Album))))
 {
     HashSet<string> files = new HashSet<string>();
-    <div class="card-columns-md-2">
+    <div class="card-columns-md-2 card-columns-xl-4">
         @foreach (FileInfo file in fileSystemGenericRepositoryFactory.CreateFileRepositoryReadOnly(default(CancellationToken), hostingEnvironment.MapWwwPath(System.IO.Path.Combine("~/", Model.Album)), true, "*.*", ".jpg", ".jpeg", ".mp4", ".avi", ".txt").GetAll(UIHelper.GetOrderByIQueryableDelegate<FileInfo>(nameof(FileInfo.LastWriteTime) + " desc"), null, null))
         {
             if (!files.Contains(file.Name))
