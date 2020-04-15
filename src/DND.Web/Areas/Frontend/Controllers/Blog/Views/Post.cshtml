@@ -117,7 +117,7 @@ else
     </div>
 
     <div class="blog-post-body gallery">
-        @if (mainPhotoVideoText != null)
+        @if (mainPhotoVideoText != null) 
         {
             <partial name="_Media" model="@mainPhotoVideoText" view-data="@(new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary()) { { "width", 1250 }, { "height", 600 } })" />
             <br /><br />
