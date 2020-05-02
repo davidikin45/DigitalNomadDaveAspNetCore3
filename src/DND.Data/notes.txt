@@ -2,3 +2,22 @@
 
 Microsoft.EntityFrameworkCore.Tools = Visual Studio
 Microsoft.EntityFrameworkCore.Design = CLI
+
+public DbSet<ViewName> {get; set;}
+//EF Core wont track entity when marked with HasNoKey
+modelBuilder.Entity<ViewName>().HasNoKey().ToView("ViewName");
+
+protected override void Up(MigrationBuilder migrationBuilder)
+{
+	migrationBuilder.Sql(
+	@"CREATE OR ALTER VIEW dbo.ViewName
+	AS
+	SELECT A, B, C
+	FROM XYZ
+	");
+}
+
+protected override void Down(MigrationBuilder migrationBuilder)
+{
+	migrationBuilder.Sql("DROP VIEW dbo.ViewName");
+}
