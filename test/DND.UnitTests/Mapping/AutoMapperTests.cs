@@ -1,5 +1,7 @@
 using AspNetCore.Mvc.Extensions.Mapping;
 using AspNetCore.Mvc.Extensions.UI;
+using AspNetCore.Specification;
+using AspNetCore.Specification.UI;
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using DND.Application.CMS.CarouselItems.Dtos;
@@ -36,12 +38,12 @@ namespace DND.UnitTests.Mapping
 
             //Mapped OrderBy
             var orderBy = UIHelper.GetOrderByIQueryable<CarouselItemDto>("CreatedOn desc");
-            var mappedOrderBy = AutoMapperHelper.MapOrderBy<CarouselItemDto, CarouselItem>(mapper, orderBy);
+            var mappedOrderBy = AutoMapperExtensions.MapOrderBy<CarouselItemDto, CarouselItem>(mapper, orderBy);
             mappedOrderBy.Compile();
 
             //Mapped Include
             Expression<Func<CarouselItemDto, object>> include = d => d.Title;
-            var mappedIncludes = AutoMapperHelper.MapIncludes<CarouselItemDto, CarouselItem>(mapper, include);
+            var mappedIncludes = AutoMapperExtensions.MapIncludes<CarouselItemDto, CarouselItem>(mapper, include);
             mappedIncludes.First().Compile();
         }
     }
