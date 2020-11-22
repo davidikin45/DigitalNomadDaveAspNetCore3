@@ -11,10 +11,9 @@ using System.Threading.Tasks;
 
 namespace DND.Application.Blog.Authors.Services
 {
-    [ResourceCollection(ResourceCollections.Blog.Authors.CollectionId)]
     public class AuthorApplicationService : ApplicationServiceEntityBase<Author, AuthorDto, AuthorDto, AuthorDto, AuthorDeleteDto, IAppUnitOfWork>, IAuthorApplicationService
     {
-        public AuthorApplicationService(ApplicationervicesContext context, IAppUnitOfWork unitOfWork, IHubContext<ApiNotificationHub<AuthorDto>> hubContext)
+        public AuthorApplicationService(ApplicationServiceServicesContext context, IAppUnitOfWork unitOfWork, IHubContext<ApiNotificationHub<AuthorDto>> hubContext)
         : base(context, unitOfWork, hubContext)
         {
 

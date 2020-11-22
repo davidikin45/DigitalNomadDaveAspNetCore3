@@ -11,10 +11,9 @@ using System.Threading.Tasks;
 
 namespace DND.Application.Blog.Tags.Services
 {
-    [ResourceCollection(ResourceCollections.Blog.Tags.CollectionId)]
     public class TagApplicationService : ApplicationServiceEntityBase<Tag, TagDto, TagDto, TagDto, TagDeleteDto, IAppUnitOfWork>, ITagApplicationService
     {
-        public TagApplicationService(ApplicationervicesContext context, IAppUnitOfWork appUnitOfWork, IHubContext<ApiNotificationHub<TagDto>> hubContext)
+        public TagApplicationService(ApplicationServiceServicesContext context, IAppUnitOfWork appUnitOfWork, IHubContext<ApiNotificationHub<TagDto>> hubContext)
         : base(context, appUnitOfWork, hubContext)
         {
 

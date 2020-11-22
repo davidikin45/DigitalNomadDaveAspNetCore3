@@ -65,9 +65,6 @@
         userFeed.run();
 
          var userFeed2 = new Instafeed({
-            get: 'user',
-            resolution: 'standard_resolution',
-            userId: '@appSettings.InstagramUserId',
             accessToken: '@appSettings.InstagramAccessToken',
             template: '<img id="instafeedMainImage" src="{{image}}" />',
             limit:1,

@@ -1,11 +1,18 @@
 using AspNetCore.Mvc.Extensions;
 using AspNetCore.Testing;
+using AspNetCore.Testing.Extensions;
+using AspNetCore.Testing.Helpers;
 using AspNetCore.Testing.TestServer;
+using DND.Data;
 using DND.Web.Areas.Frontend.Controllers.Home.Models;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -25,6 +32,8 @@ namespace DND.IntegrationTests
         [InlineData("/en/blog")]
         [InlineData("/en/gallery")]
         [InlineData("/en/videos")]
+        [InlineData("/en/countries")]
+        [InlineData("/en/locations")]
         [InlineData("/en/bucket-list")]
         [InlineData("/en/travel-map")]
         [InlineData("/en/about")]
@@ -35,11 +44,26 @@ namespace DND.IntegrationTests
             // Arrange
             var client = _factory.CreateClient();
 
+            //var client = _factory.WithWebHostBuilder(builder =>
+            //{
+            //    builder.ConfigureTestServices(services =>
+            //    {
+            //        //Add fake (In memory) vs mock (register calls without testing)
+            //        //Initialise Db
+            //    });
+            //}).CreateClient();
+
             // Act
             var response = await client.GetAsync(url);
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
+
+            //AngleSharp
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
+            var content = await HtmlHelpers.GetDocumentAsync(response);
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
+
             Assert.Equal("text/html; charset=utf-8",
                 response.Content.Headers.ContentType.ToString());
         }
@@ -77,42 +101,6 @@ namespace DND.IntegrationTests
             }
 
             Assert.True(true);
-        }
-
-        [Fact]
-        public async Task AcceptContactFormPost()
-        {
-            // Arrange
-            var client = _factory.CreateClient();
-
-            // Get initial response that contains anti forgery tokens
-            HttpResponseMessage initialResponse = await client.GetAsync("/en/contact");
-            var antiForgeryValues = await _factory.ExtractAntiForgeryValues(initialResponse);
-
-            // Create POST request, adding anti forgery cookie and form field
-            HttpRequestMessage postRequest = new HttpRequestMessage(HttpMethod.Post, "/en/contact");
-
-            postRequest.Headers.Add("Cookie", $"{TestServerFixtureBase<object>.AntiForgeryCookieName}={antiForgeryValues.cookieValue}");
-
-            var formData = new Dictionary<string, string>
-            {
-                {TestServerFixtureBase<object>.AntiForgeryFieldName, antiForgeryValues.fieldValue},
-                {nameof(ContactViewModel.Name),"James Smith"},
-                {nameof(ContactViewModel.Email),"test@gmail.com"},
-                {nameof(ContactViewModel.Website),""},
-                {nameof(ContactViewModel.Subject),"Enquiry"},
-                {nameof(ContactViewModel.Message),"This is a test message"}
-            };
-
-            postRequest.Content = new FormUrlEncodedContent(formData);
-
-            HttpResponseMessage postResponse = await client.SendAsync(postRequest);
-
-            postResponse.EnsureSuccessStatusCode();
-
-            var responseString = await postResponse.Content.ReadAsStringAsync();
-
-            Assert.Contains(Messages.MessageSentSuccessfully, responseString);
         }
     }
 }

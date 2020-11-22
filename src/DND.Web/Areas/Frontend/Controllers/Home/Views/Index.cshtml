@@ -158,11 +158,8 @@
     <script>
         $('#instafeedFooter').each(function () {
             var userFeed = new Instafeed({
-                get: 'user',
-                userId: '@appSettings.InstagramUserId',
                 accessToken: '@appSettings.InstagramAccessToken',
                 template: '<a class="col-3 col-3-square remove-text-decoration" target="_blank" title="{{caption}}" alt="{{caption}}" href="{{link}}"><div class="hover-zoom text-center" style="display: table; background-image:url({{image}}); color:white;"><div class="hidden-sm-down overlay"><i class="fa fa-heart fa-2x"></i>&nbsp;{{likes}}&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-comment fa-2x"></i>&nbsp;{{comments}}</div><div class="hidden-md-up overlay"><i class="fa fa-heart"></i>&nbsp;{{likes}}<br/><i class="fa fa-comment"></i>&nbsp;{{comments}}</div></div></a>',
-                resolution: 'standard_resolution',
                 target: 'instafeedFooter',
                 limit: 8
             });

@@ -1,7 +1,11 @@
-﻿using AspNetCore.Mvc.Extensions.Hangfire;
+﻿using AspNetCore.Mvc.Extensions;
+using AspNetCore.Mvc.Extensions.Hangfire;
 using AspNetCore.Mvc.Extensions.Settings;
 using AspNetCore.Mvc.Extensions.StartupTasks;
+using Database.Initialization;
+using Hangfire;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Threading;
@@ -25,15 +29,28 @@ namespace DND.Data
 
         protected override async Task ExecuteAsync(IServiceProvider scopedServiceProvider, CancellationToken stoppingToken)
         {
-            if (_hostingEnvironment.IsStaging() || _hostingEnvironment.IsProduction())
+            var connection = _connectionStrings["HangfireConnection"];
+
+            //Can only be used for SQL Server and SQLite physical databases. No need to initialize for InMemory, SQLite InMemory Initializes automatically.
+            if (!string.IsNullOrEmpty(connection) && !ConnectionStringHelper.IsSQLiteInMemory(connection))
             {
-                var dbInitializer = new HangfireInitializerCreate();
-                await dbInitializer.InitializeAsync(_connectionStrings["HangfireConnection"]);
-            }
-            else
-            {
-                var dbInitializer = new HangfireInitializerDropCreate();
-                await dbInitializer.InitializeAsync(_connectionStrings["HangfireConnection"]);
+                if (_hostingEnvironment.IsStaging() || _hostingEnvironment.IsProduction())
+                {
+                    var dbInitializer = new HangfireInitializerCreate();
+                    await dbInitializer.InitializeAsync(connection);
+                }
+                else if (_hostingEnvironment.IsIntegration())
+                {
+
+                    var dbInitializer = new HangfireInitializerDropCreate();
+                    await dbInitializer.InitializeAsync(connection);
+
+                }
+                else
+                {
+                    var dbInitializer = new HangfireInitializerDropCreate();
+                    await dbInitializer.InitializeAsync(connection);
+                }
             }
         }
     }

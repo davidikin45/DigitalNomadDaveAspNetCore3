@@ -12,6 +12,7 @@ using DND.Application;
 using DND.Application.Blog;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement.Mvc;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ using System.Threading.Tasks;
 namespace DND.Web.Areas.Frontend.Controllers.BucketList
 {
     [Area("Frontend")]
-    [Feature("BucketList")]
+    [FeatureGate(FeatureFlags.BucketList)]
     [Route("bucket-list")]
     public class BucketListController : MvcControllerBase
     {

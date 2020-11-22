@@ -1,0 +1,35 @@
+{
+  "captureStartupErrors": true,
+  "detailedErrors": false,
+  "environment": "Development",
+  "shutdownTimeoutSeconds": 20,
+  "urls": "http://localhost:5000;https://localhost:5001",
+  "webroot": "wwwroot",
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        "Microsoft": "Warning",
+        "Microsoft.Hosting.Lifetime": "Information"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "Debug",
+        "Args": { "outputTemplate": "[{Timestamp:HH:mm:ss.fff}] {Level:u3} - {Message:lj}{NewLine}{Exception}" }
+      },
+      {
+        "Name": "Console",
+        "Args": { "outputTemplate": "[{Timestamp:HH:mm:ss.fff}] {Level:u3} - {Message:lj}{NewLine}{Exception}" }
+      },
+      {
+        "Name": "File",
+        "Args": {
+          "path": "logs\\log-.txt",
+          "rollingInterval": "Day",
+          "outputTemplate": "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}] {Level:u3} - {Message:lj}{NewLine}{Exception}"
+        }
+      }
+    ]
+  }
+}

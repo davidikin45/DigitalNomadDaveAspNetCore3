@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace AspNetCore.Testing
 {
+    //https://stackoverflow.com/questions/43927955/should-getenvironmentvariable-work-in-xunit-test
     public class EnvironmentVariablesFixture : IDisposable
     {
         public EnvironmentVariablesFixture()

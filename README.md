@@ -1,4 +1,4 @@
-# Digital Nomad Dave ASP.NET Core v2
+# Digital Nomad Dave ASP.NET Core v3
 [![Build status](https://davidikin.visualstudio.com/Digital%20Nomad%20Dave/_apis/build/status/Digital%20Nomad%20Dave-ASP.NET%20Core-CI)](https://davidikin.visualstudio.com/Digital%20Nomad%20Dave/_build/latest?definitionId=5)
 
 A custom built Content Management System using Bootstrap 4, Angular, C# MVC Core, xUnit, SpecFlow, Selenium, Azure Devops - Previously VSTS, JwtTokens, OpenID Connect, Identity Server 4.
@@ -52,7 +52,7 @@ OR
 dotnet test test\DND.IntegrationTests\DND.IntegrationTests.csproj
 ```
 
-### DND.UITests (SpecFlow & Selenium)
+### DND.UserIinterfaceTests (SpecFlow & Selenium)
 
 Automatically creates a Integration database on Local\MSSQLLOCALDB, seeds and launches a Kestral Web Host using dotnet run. On completion database is deleted. Domain Events fired.
 

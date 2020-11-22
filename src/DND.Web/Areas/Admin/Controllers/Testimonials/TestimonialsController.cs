@@ -12,7 +12,6 @@ namespace DND.Web.Areas.Admin.Controllers.Testimonials
 {
     [Authorize(Roles = "admin")]
     [Area("Admin")]
-    [ResourceCollection(ResourceCollections.CMS.Testimonials.CollectionId)]
     [Route("admin/cms/testimonials")]
     public class TestimonialsController : MvcControllerEntityAuthorizeBase<TestimonialDto, TestimonialDto, TestimonialDto, TestimonialDeleteDto, ITestimonialApplicationService>
     {

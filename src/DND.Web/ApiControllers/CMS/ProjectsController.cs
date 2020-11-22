@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Routing;
 namespace DND.Web.ApiControllers.CMS
 {
     [Authorize(Roles = "admin")]
-    [ResourceCollection(ResourceCollections.CMS.Projects.CollectionId)]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/cms/projects")]
     public class ProjectsController : ApiControllerEntityAuthorizeBase<ProjectDto, ProjectDto, ProjectDto, ProjectDeleteDto, IProjectApplicationService>

@@ -1,0 +1,27 @@
+﻿@model dynamic
+@{
+    ViewContext.ClientValidationEnabled = true;
+}
+
+@HtmlHelperPartialExtensions.Partial(Html, "~/Views/Bootstrap4/_Edit.cshtml", Model, Html.ViewData)
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@section scripts
+    {
+    <script>
+        function createCollectionItem(id, collectionItemUrl) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var elem = document.createElement('div');
+                    elem.innerHTML = this.responseText;
+                    document.getElementById(id).appendChild(elem.firstElementChild);
+                }
+            };
+            xhttp.open("GET", collectionItemUrl, true);
+            xhttp.send();
+        }
+    </script>
+}

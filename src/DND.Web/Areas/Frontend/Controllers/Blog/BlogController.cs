@@ -1,17 +1,17 @@
 ﻿using AspNetCore.Mvc.Extensions.Context;
 using AspNetCore.Mvc.Extensions.Controllers.Mvc;
-using AspNetCore.Mvc.Extensions.Features;
 using AspNetCore.Mvc.Extensions.Helpers;
 using DND.Application.Blog;
 using DND.Web.Areas.Frontend.Controllers.Blog.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement.Mvc;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 namespace DND.Web.Areas.Frontend.Controllers.Blog
 {
     [Area("Frontend")]
-    [Feature("Blog")]
+    [FeatureGate(FeatureFlags.Blog)]
     [Route("blog")]
     public class BlogController : MvcControllerBase
     {

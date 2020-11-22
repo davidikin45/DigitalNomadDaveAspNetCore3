@@ -9,13 +9,14 @@ using DND.Application.Blog.Locations.Dtos;
 using DND.Application.Blog.Locations.Services;
 using DND.Domain.Blog.Locations;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace DND.Web.Areas.Frontend.Controllers.Countries
 {
     [Area("Frontend")]
-    [Feature("Countries")]
+    [FeatureGate(FeatureFlags.Countries)]
     [Route("countries")]
     public class CountriesController : MvcControllerBase
     {
@@ -35,7 +36,7 @@ namespace DND.Web.Areas.Frontend.Controllers.Countries
 
             try
             {
-                var dataTask = _locationService.SearchAsync(cts.Token, null, LocationType.Country.ToString() + "&" + search, l => !string.IsNullOrEmpty(l.Album) && !string.IsNullOrEmpty(l.UrlSlug), orderBy, p - 1, pageSize);
+                var dataTask = _locationService.SearchAsync(cts.Token, null, LocationType.Country.ToString() + "&" + search, l => !string.IsNullOrEmpty(l.Album) && !string.IsNullOrEmpty(l.UrlSlug), orderBy, p, pageSize);
 
                 await TaskHelper.WhenAllOrException(cts, dataTask);
 

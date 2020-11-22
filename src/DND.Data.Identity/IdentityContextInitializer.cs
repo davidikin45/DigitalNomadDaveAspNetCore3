@@ -27,20 +27,21 @@ namespace DND.Data.Identity
         protected override async Task ExecuteAsync(IServiceProvider scopedServiceProvider, CancellationToken stoppingToken)
         {
             var context = scopedServiceProvider.GetRequiredService<IdentityContext>();
-            var passwordHasher = scopedServiceProvider.GetRequiredService<IPasswordHasher<User>>();
             if (_hostingEnvironment.IsStaging() || _hostingEnvironment.IsProduction())
             {
-                var migrationInitializer = new IdentityContextInitializerMigrate(passwordHasher);
+                var migrationInitializer = new IdentityContextInitializerMigrate();
                 await migrationInitializer.InitializeAsync(context);
             }
             else if (_hostingEnvironment.IsIntegration())
             {
-                var migrationInitializer = new IdentityContextInitializerDropMigrate(passwordHasher);
+                //Can't have multi provider migrations so best to only use migrations in production.
+                //var migrationInitializer = new IdentityContextInitializerDropMigrate();
+                var migrationInitializer = new IdentityContextInitializerDropCreate();
                 await migrationInitializer.InitializeAsync(context);
             }
             else
             {
-                var migrationInitializer = new IdentityContextInitializerDropCreate(passwordHasher);
+                var migrationInitializer = new IdentityContextInitializerDropCreate();
                 await migrationInitializer.InitializeAsync(context);
             }
         }

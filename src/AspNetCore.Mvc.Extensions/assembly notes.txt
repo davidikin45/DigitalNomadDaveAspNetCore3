@@ -1,0 +1,2 @@
+﻿  //when running Integration Tests in Xunit the Assembly.GetEntryAssembly() is TestHost.dll
+  //When static method use Assembly.GetExecutingAssembly() otherwise in base classes this.GetType().Assembly

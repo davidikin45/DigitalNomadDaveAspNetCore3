@@ -11,7 +11,6 @@ namespace DND.Web.Areas.Admin.Controllers.Locations
 {
     [Authorize(Roles = "admin")]
     [Area("Admin")]
-    [ResourceCollection(ResourceCollections.Blog.Locations.CollectionId)]
     [Route("admin/blog/locations")]
     public class LocationsController : MvcControllerEntityAuthorizeBase<LocationDto, LocationDto, LocationDto, LocationDeleteDto, ILocationApplicationService>
     {

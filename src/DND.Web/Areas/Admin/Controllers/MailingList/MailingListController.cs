@@ -1,11 +1,9 @@
 ﻿using AspNetCore.Mvc.Extensions;
 using AspNetCore.Mvc.Extensions.Alerts;
-using AspNetCore.Mvc.Extensions.Authorization;
 using AspNetCore.Mvc.Extensions.Context;
 using AspNetCore.Mvc.Extensions.Controllers.Mvc;
 using AspNetCore.Mvc.Extensions.Email;
 using AspNetCore.Mvc.Extensions.Helpers;
-using DND.Application;
 using DND.Application.CMS.MailingLists.Dtos;
 using DND.Application.CMS.MailingLists.Services;
 using DND.Web.Areas.Admin.Controllers.MailingList.Models;
@@ -19,7 +17,6 @@ namespace DND.Web.Areas.Admin.Controllers.MailingList
 {
     [Authorize(Roles = "admin")]
     [Area("Admin")]
-    [ResourceCollection(ResourceCollections.CMS.MailingList.CollectionId)]
     [Route("admin/cms/mailing-list")]
     public class MailingListController : MvcControllerEntityAuthorizeBase<MailingListDto, MailingListDto, MailingListDto, MailingListDeleteDto, IMailingListApplicationService>
     {

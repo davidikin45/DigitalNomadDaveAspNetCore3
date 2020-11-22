@@ -37,6 +37,7 @@ using DND.Domain.CMS.Testimonials;
 using DND.Domain.Identity;
 using EntityFrameworkCore.Initialization;
 using Hangfire;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -62,6 +63,7 @@ namespace DND.Web
             services.AddDbContext<IdentityContext>(identityConnectionString);
         }
 
+        //Scoped
         public override void AddRepositories(IServiceCollection services)
         {
             services.AddRepository<IAuthorRepository, AuthorRepository>();
@@ -109,18 +111,30 @@ namespace DND.Web
         public override void AddDbStartupTasks(IServiceCollection services)
         {
             services.AddDbStartupTask<NoSqlContextInitializer>();
-            services.AddDbStartupTask<ApplicationContextInitializer>();
             services.AddDbStartupTask<HangfireDbInitializer>();
+
+            services.AddDbStartupTask<ApplicationContextInitializer>();
+            services.AddDbStartupTask<Data.AppContext>((sp, db) => {
+                Data.DbSeed.Seed(db);
+                db.SaveChanges();
+            });
+
             services.AddDbStartupTask<IdentityContextInitializer>();
+            services.AddDbStartupTask<IdentityContext>((sp, db) => {
+                var hasher = sp.GetRequiredService<IPasswordHasher<User>>();
+                var dbSeeder = new Data.Identity.DbSeed(hasher);
+                dbSeeder.Seed(db);
+                db.SaveChanges();
+            });
         }
 
         public override void AddStartupTasks(IServiceCollection services)
         {
             services.AddStartupTask<HangfireScheduledJobs>();
-            //services.AddStartupTask<CqrsCommandsTask>();
-            //services.AddStartupTask<CqrsQueriesTask>();
-            //services.AddStartupTask<DomainEventsTask>();
-            //services.AddStartupTask<IntegrationEventsTask>();
+            services.AddStartupTask<CqrsCommandsTask>();
+            services.AddStartupTask<CqrsQueriesTask>();
+            services.AddStartupTask<DomainEventsTask>();
+            services.AddStartupTask<IntegrationEventsTask>();
         }
 
         public override void AddHostedServices(IServiceCollection services)
@@ -139,11 +153,6 @@ namespace DND.Web
         }
 
         public override void AddgRPCClients(IServiceCollection services)
-        {
-
-        }
-
-        public override void AddGraphQLSchemas(IEndpointRouteBuilder endpoints)
         {
 
         }
@@ -174,6 +183,7 @@ namespace DND.Web
             var recurringJobManager = scopedServiceProvider.GetRequiredService<IRecurringJobManager>();
             //_recurringJobManager.AddOrUpdate("check-link", Job.FromExpression<Job1>(m => m.Execute()), Cron.Minutely(), new RecurringJobOptions());
             //_recurringJobManager.Trigger("check-link");
+            //_recurringJobManager.AddOrUpdate("manual", Job.FromExpression<Job1>(m => m.Execute()), Cron.Never(), new RecurringJobOptions());
 
             return Task.CompletedTask;
         }

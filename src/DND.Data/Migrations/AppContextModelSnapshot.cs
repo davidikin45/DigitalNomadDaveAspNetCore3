@@ -15,18 +15,16 @@ namespace DND.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                .HasAnnotation("SqlServer:IdentitySeed", 1)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.0");
 
             modelBuilder.Entity("DND.Domain.Blog.Authors.Author", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -50,8 +48,8 @@ namespace DND.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UrlSlug")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -63,7 +61,7 @@ namespace DND.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("Album")
                         .IsRequired()
@@ -76,8 +74,8 @@ namespace DND.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CarouselText")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -90,8 +88,8 @@ namespace DND.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasMaxLength(300000);
+                        .HasMaxLength(300000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MapHeight")
                         .HasColumnType("int");
@@ -109,8 +107,8 @@ namespace DND.Data.Migrations
 
                     b.Property<string>("ShortDescription")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasMaxLength(5000);
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("ShowInCarousel")
                         .HasColumnType("bit");
@@ -126,8 +124,8 @@ namespace DND.Data.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -137,8 +135,8 @@ namespace DND.Data.Migrations
 
                     b.Property<string>("UrlSlug")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
@@ -154,7 +152,7 @@ namespace DND.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -164,13 +162,13 @@ namespace DND.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("Published")
                         .HasColumnType("bit");
@@ -188,8 +186,8 @@ namespace DND.Data.Migrations
 
                     b.Property<string>("UrlSlug")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -201,7 +199,7 @@ namespace DND.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("Album")
                         .HasColumnType("nvarchar(max)");
@@ -276,7 +274,7 @@ namespace DND.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -286,13 +284,13 @@ namespace DND.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -307,8 +305,8 @@ namespace DND.Data.Migrations
 
                     b.Property<string>("UrlSlug")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -320,7 +318,7 @@ namespace DND.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("Album")
                         .HasColumnType("nvarchar(max)");
@@ -329,8 +327,8 @@ namespace DND.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CarouselText")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -400,6 +398,88 @@ namespace DND.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ContentHtml");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "About",
+                            CreatedBy = "SYSTEM",
+                            CreatedOn = new DateTime(2020, 11, 20, 18, 15, 19, 948, DateTimeKind.Local).AddTicks(1170),
+                            HTML = "<p>About Me</p>",
+                            PreventDelete = false
+                        },
+                        new
+                        {
+                            Id = "SideBarAbout",
+                            CreatedBy = "SYSTEM",
+                            CreatedOn = new DateTime(2020, 11, 20, 18, 15, 19, 951, DateTimeKind.Local).AddTicks(4919),
+                            HTML = "<p>About Me</p>",
+                            PreventDelete = false
+                        },
+                        new
+                        {
+                            Id = "WorkWithMe",
+                            CreatedBy = "SYSTEM",
+                            CreatedOn = new DateTime(2020, 11, 20, 18, 15, 19, 951, DateTimeKind.Local).AddTicks(5046),
+                            HTML = "<p>Work With Me</p>",
+                            PreventDelete = false
+                        },
+                        new
+                        {
+                            Id = "MyWebsite",
+                            CreatedBy = "SYSTEM",
+                            CreatedOn = new DateTime(2020, 11, 20, 18, 15, 19, 951, DateTimeKind.Local).AddTicks(5077),
+                            HTML = "<p>My Website</p>",
+                            PreventDelete = false
+                        },
+                        new
+                        {
+                            Id = "Affiliates",
+                            CreatedBy = "SYSTEM",
+                            CreatedOn = new DateTime(2020, 11, 20, 18, 15, 19, 951, DateTimeKind.Local).AddTicks(5094),
+                            HTML = "<p>Affiliates</p>",
+                            PreventDelete = false
+                        },
+                        new
+                        {
+                            Id = "Resume",
+                            CreatedBy = "SYSTEM",
+                            CreatedOn = new DateTime(2020, 11, 20, 18, 15, 19, 951, DateTimeKind.Local).AddTicks(5113),
+                            HTML = "<p>Resume</p>",
+                            PreventDelete = false
+                        },
+                        new
+                        {
+                            Id = "Contact",
+                            CreatedBy = "SYSTEM",
+                            CreatedOn = new DateTime(2020, 11, 20, 18, 15, 19, 951, DateTimeKind.Local).AddTicks(5128),
+                            HTML = "<p>Contact</p>",
+                            PreventDelete = false
+                        },
+                        new
+                        {
+                            Id = "Head",
+                            CreatedBy = "SYSTEM",
+                            CreatedOn = new DateTime(2020, 11, 20, 18, 15, 19, 951, DateTimeKind.Local).AddTicks(5143),
+                            HTML = "",
+                            PreventDelete = false
+                        },
+                        new
+                        {
+                            Id = "Main",
+                            CreatedBy = "SYSTEM",
+                            CreatedOn = new DateTime(2020, 11, 20, 18, 15, 19, 951, DateTimeKind.Local).AddTicks(5158),
+                            HTML = "",
+                            PreventDelete = false
+                        },
+                        new
+                        {
+                            Id = "PrivacyPolicy",
+                            CreatedBy = "SYSTEM",
+                            CreatedOn = new DateTime(2020, 11, 20, 18, 15, 19, 951, DateTimeKind.Local).AddTicks(5174),
+                            HTML = "",
+                            PreventDelete = false
+                        });
                 });
 
             modelBuilder.Entity("DND.Domain.CMS.ContentTexts.ContentText", b =>
@@ -440,7 +520,7 @@ namespace DND.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("Answer")
                         .IsRequired()
@@ -477,7 +557,7 @@ namespace DND.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -513,7 +593,7 @@ namespace DND.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("Album")
                         .HasColumnType("nvarchar(max)");
@@ -526,8 +606,8 @@ namespace DND.Data.Migrations
 
                     b.Property<string>("DescriptionText")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("File")
                         .HasColumnType("nvarchar(max)");
@@ -537,8 +617,8 @@ namespace DND.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -561,7 +641,7 @@ namespace DND.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -574,8 +654,8 @@ namespace DND.Data.Migrations
 
                     b.Property<string>("QuoteText")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasMaxLength(5000);
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -584,8 +664,8 @@ namespace DND.Data.Migrations
 
                     b.Property<string>("Source")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -620,7 +700,7 @@ namespace DND.Data.Migrations
                             b1.Property<int>("Id")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                                .UseIdentityColumn();
 
                             b1.Property<string>("CreatedBy")
                                 .HasColumnType("nvarchar(max)");
@@ -651,6 +731,8 @@ namespace DND.Data.Migrations
                                 .HasForeignKey("LocationId")
                                 .OnDelete(DeleteBehavior.Cascade)
                                 .IsRequired();
+
+                            b1.Navigation("Location");
                         });
 
                     b.OwnsMany("DND.Domain.Blog.BlogPosts.BlogPostTag", "Tags", b1 =>
@@ -661,7 +743,7 @@ namespace DND.Data.Migrations
                             b1.Property<int>("Id")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                                .UseIdentityColumn();
 
                             b1.Property<string>("CreatedBy")
                                 .HasColumnType("nvarchar(max)");
@@ -692,7 +774,17 @@ namespace DND.Data.Migrations
                                 .HasForeignKey("TagId")
                                 .OnDelete(DeleteBehavior.Cascade)
                                 .IsRequired();
+
+                            b1.Navigation("Tag");
                         });
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Locations");
+
+                    b.Navigation("Tags");
                 });
 #pragma warning restore 612, 618
         }

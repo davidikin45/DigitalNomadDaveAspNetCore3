@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Routing;
 namespace DND.Web.ApiControllers.CMS
 {
     [Authorize(Roles = "admin")]
-    [ResourceCollection(ResourceCollections.CMS.CarouselItems.CollectionId)]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/cms/carousel-items")]
     public class CarouselItemsController : ApiControllerEntityAuthorizeBase<CarouselItemDto, CarouselItemDto, CarouselItemDto, CarouselItemDeleteDto, ICarouselItemApplicationService>

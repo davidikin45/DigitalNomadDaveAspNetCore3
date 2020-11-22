@@ -78,45 +78,45 @@ namespace DND.IntegrationTests.Data
             }
         }
 
-        [Fact]
-        public async Task SqliteInMemoryTestInitializationDropMigrate()
-        {
-            var services = new ServiceCollection();
-            services.AddSingleton<IDbContextTenantStrategy<DND.Data.AppContext>>(sp => new DummyTenantDbContext<DND.Data.AppContext>());
-            var tenant = new Tenant("", new ConfigurationBuilder().Build());
-            ITenantService tenantService = new MultiTenantService(new MultiTenantDbContextStrategyService(services.BuildServiceProvider()), tenant);
+        //[Fact]
+        //public async Task SqliteInMemoryTestInitializationDropMigrate()
+        //{
+        //    var services = new ServiceCollection();
+        //    services.AddSingleton<IDbContextTenantStrategy<DND.Data.AppContext>>(sp => new DummyTenantDbContext<DND.Data.AppContext>());
+        //    var tenant = new Tenant("", new ConfigurationBuilder().Build());
+        //    ITenantService tenantService = new MultiTenantService(new MultiTenantDbContextStrategyService(services.BuildServiceProvider()), tenant);
 
-            using (var factory = new SqliteInMemoryDbContextFactory<DND.Data.AppContext>((options) => new DND.Data.AppContext(options, tenantService), log => _output.WriteLine(log)))
-            {
-                using (var context = await factory.CreateContextAsync(false))
-                {
-                    var dbInitializer = new AppContextInitializerDropMigrate();
-                    await dbInitializer.InitializeAsync(context);
-                    await context.Database.EnsureDeletedAsync(); //Clears Db Data
-                    Assert.True(await context.Database.ExistsAsync());
-                }
-            }
-        }
+        //    using (var factory = new SqliteInMemoryDbContextFactory<DND.Data.AppContext>((options) => new DND.Data.AppContext(options, tenantService), log => _output.WriteLine(log)))
+        //    {
+        //        using (var context = await factory.CreateContextAsync(false))
+        //        {
+        //            var dbInitializer = new AppContextInitializerDropMigrate();
+        //            await dbInitializer.InitializeAsync(context);
+        //            await context.Database.EnsureDeletedAsync(); //Clears Db Data
+        //            Assert.True(await context.Database.ExistsAsync());
+        //        }
+        //    }
+        //}
 
-        [Fact]
-        public async Task SqliteInMemoryTestInitializationMigrate()
-        {
-            var services = new ServiceCollection();
-            services.AddSingleton<IDbContextTenantStrategy<DND.Data.AppContext>>(sp => new DummyTenantDbContext<DND.Data.AppContext>());
-            var tenant = new Tenant("", new ConfigurationBuilder().Build());
-            ITenantService tenantService = new MultiTenantService(new MultiTenantDbContextStrategyService(services.BuildServiceProvider()), tenant);
+        //[Fact]
+        //public async Task SqliteInMemoryTestInitializationMigrate()
+        //{
+        //    var services = new ServiceCollection();
+        //    services.AddSingleton<IDbContextTenantStrategy<DND.Data.AppContext>>(sp => new DummyTenantDbContext<DND.Data.AppContext>());
+        //    var tenant = new Tenant("", new ConfigurationBuilder().Build());
+        //    ITenantService tenantService = new MultiTenantService(new MultiTenantDbContextStrategyService(services.BuildServiceProvider()), tenant);
 
-            using (var factory = new SqliteInMemoryDbContextFactory<DND.Data.AppContext>((options) => new DND.Data.AppContext(options, tenantService), log => _output.WriteLine(log)))
-            {
-                using (var context = await factory.CreateContextAsync(false))
-                {
-                    var dbInitializer = new AppContextInitializerMigrate();
-                    await dbInitializer.InitializeAsync(context);
-                    await context.Database.EnsureDeletedAsync(); //Clears Db Data
-                    Assert.True(await context.Database.ExistsAsync());
-                }
-            }
-        }
+        //    using (var factory = new SqliteInMemoryDbContextFactory<DND.Data.AppContext>((options) => new DND.Data.AppContext(options, tenantService), log => _output.WriteLine(log)))
+        //    {
+        //        using (var context = await factory.CreateContextAsync(false))
+        //        {
+        //            var dbInitializer = new AppContextInitializerMigrate();
+        //            await dbInitializer.InitializeAsync(context);
+        //            await context.Database.EnsureDeletedAsync(); //Clears Db Data
+        //            Assert.True(await context.Database.ExistsAsync());
+        //        }
+        //    }
+        //}
 
         [Fact]
         public async Task SqliteInMemoryTestInitializationHangfire()

@@ -11,7 +11,6 @@ namespace DND.Web.Areas.Admin.Controllers.BlogPosts
 {
     [Authorize(Roles = "admin")]
     [Area("Admin")]
-    [ResourceCollection(ResourceCollections.Blog.BlogPosts.CollectionId)]
     [Route("admin/blog/blog-posts")]
     public class BlogPostsController : MvcControllerEntityAuthorizeBase<BlogPostDto, BlogPostDto, BlogPostDto, BlogPostDeleteDto, IBlogPostApplicationService>
     {

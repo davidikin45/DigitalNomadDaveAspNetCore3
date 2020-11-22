@@ -9,10 +9,9 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace DND.Application.CMS.MailingLists.Services
 {
-    [ResourceCollection(ResourceCollections.CMS.MailingList.CollectionId)]
     public class MailingListApplicationService : ApplicationServiceEntityBase<MailingList, MailingListDto, MailingListDto, MailingListDto, MailingListDeleteDto, IAppUnitOfWork>, IMailingListApplicationService
     {
-        public MailingListApplicationService(ApplicationervicesContext context, IAppUnitOfWork appUnitOfWork, IHubContext<ApiNotificationHub<MailingListDto>> hubContext)
+        public MailingListApplicationService(ApplicationServiceServicesContext context, IAppUnitOfWork appUnitOfWork, IHubContext<ApiNotificationHub<MailingListDto>> hubContext)
         : base(context, appUnitOfWork, hubContext)
         {
 

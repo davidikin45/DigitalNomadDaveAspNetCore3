@@ -22,7 +22,7 @@ namespace DND.Data
 {
     //Could also use IDbContext
     //The advantage of IAppUnitOfWork is that it can wrap multiple contexts and more importantly handles nested commits.
-    public class AppUnitOfWork : UnitOfWorkWithEventsBase, IAppUnitOfWork
+    public class AppUnitOfWork : UnitOfWorkWithEvents, IAppUnitOfWork
     {
         public IAuthorRepository AuthorRepository { get; }
         public IBlogPostRepository BlogPostRepository { get; }

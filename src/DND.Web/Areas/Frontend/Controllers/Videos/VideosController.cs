@@ -14,6 +14,7 @@ using AutoMapper;
 using DND.Application;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement.Mvc;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ using System.Threading.Tasks;
 namespace DND.Web.Areas.Frontend.Controllers.Videos
 {
     [Area("Frontend")]
-    [Feature("Videos")]
+    [FeatureGate(FeatureFlags.Videos)]
     [Route("videos")]
     public class VideosController : MvcControllerBase
     {

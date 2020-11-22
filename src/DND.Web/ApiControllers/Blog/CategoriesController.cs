@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Routing;
 namespace DND.Web.ApiControllers.Blog
 {
     [Authorize(Roles = "admin")]
-    [ResourceCollection(ResourceCollections.Blog.Categories.CollectionId)]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/blog/categories")]
     public class CategoriesController : ApiControllerEntityAuthorizeBase<CategoryDto, CategoryDto, CategoryDto, CategoryDeleteDto, ICategoryApplicationService>

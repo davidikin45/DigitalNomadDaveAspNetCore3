@@ -6,7 +6,6 @@ using AutoMapper.EquivalencyExpression;
 using DND.Application.Blog.Tags.Dtos;
 using DND.Domain.Blog.Tags;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -25,7 +24,6 @@ namespace DND.Domain.Blog.BlogPosts.Dtos
         [HiddenInput()]
         public int BlogPostId { get; set; }
 
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         [Render(ShowForGrid = false, ShowForDisplay = false, ShowForEdit = false, ShowForCreate = false)]
         public TagDto Tag { get; set; }
 

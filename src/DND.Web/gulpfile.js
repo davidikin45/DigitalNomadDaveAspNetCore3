@@ -178,8 +178,8 @@ var deps = {
         "prism.js": ""
     },
     "instafeed.js": {
-        "instafeed.js": "",
-        "instafeed.min.js": ""
+        "dist/instafeed.js": "",
+        "dist/instafeed.min.js": ""
     },
     "infinite-scroll": {
         "dist/*": ""

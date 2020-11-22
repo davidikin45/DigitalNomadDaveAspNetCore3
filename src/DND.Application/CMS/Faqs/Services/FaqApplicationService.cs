@@ -9,10 +9,9 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace DND.Application.CMS.Faqs.Services
 {
-    [ResourceCollection(ResourceCollections.CMS.Faqs.CollectionId)]
     public class FaqApplicationService : ApplicationServiceEntityBase<Faq, FaqDto, FaqDto, FaqDto, FaqDeleteDto, IAppUnitOfWork>, IFaqApplicationService
     {
-        public FaqApplicationService(ApplicationervicesContext context, IAppUnitOfWork appUnitOfWork, IHubContext<ApiNotificationHub<FaqDto>> hubContext)
+        public FaqApplicationService(ApplicationServiceServicesContext context, IAppUnitOfWork appUnitOfWork, IHubContext<ApiNotificationHub<FaqDto>> hubContext)
         : base(context, appUnitOfWork, hubContext)
         {
 

@@ -32,7 +32,10 @@ namespace DND.Data
             }
             else if (_hostingEnvironment.IsIntegration())
             {
-                var dbInitializer = new AppContextInitializerDropMigrate();
+                //Can't have multi provider migrations so best to only use migrations in production.
+                //Can only be used for sqlserver and sqlite. Throws exception for InMemory
+                //var dbInitializer = new AppContextInitializerDropMigrate();
+                var dbInitializer = new AppContextInitializerDropCreate();
                 await dbInitializer.InitializeAsync(context);
             }
             else

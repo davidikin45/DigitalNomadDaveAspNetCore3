@@ -102,13 +102,11 @@ namespace DND.IntegrationTests.Data
 
             var options = DbContextConnections.DbContextOptionsInMemory<AppContext>();
 
-            using (var context = new AppContext(options, tenantService))
-            {
-                var dbInitializer = new AppContextInitializerDropCreate();
-                await dbInitializer.InitializeAsync(context);
-                await context.Database.EnsureDeletedAsync(); //Clears Db Data
-                Assert.True(await context.Database.ExistsAsync());
-            }
+            using var context = new AppContext(options, tenantService);
+            var dbInitializer = new AppContextInitializerDropCreate();
+            await dbInitializer.InitializeAsync(context);
+            await context.Database.EnsureDeletedAsync(); //Clears Db Data
+            Assert.True(await context.Database.ExistsAsync());
         }
     }
 }

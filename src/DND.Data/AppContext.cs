@@ -25,6 +25,7 @@ using DND.Domain.CMS.MailingLists;
 using DND.Domain.CMS.Projects;
 using DND.Domain.CMS.Testimonials;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace DND.Data
 {
@@ -75,16 +76,23 @@ namespace DND.Data
             builder.ApplyConfiguration(new MailingListConfiguration());
             builder.ApplyConfiguration(new ProjectConfiguration());
             builder.ApplyConfiguration(new TestimonialConfiguration());
+
+            //Seed Data with EnsureCreated or Migrations
+            builder.Entity<ContentHtml>().HasData(new ContentHtml() { Id = Constants.ContentHtml.About, HTML = "<p>About Me</p>", CreatedOn = DateTime.Now, CreatedBy = "SYSTEM" });
+            builder.Entity<ContentHtml>().HasData(new ContentHtml() { Id = Constants.ContentHtml.SideBarAbout, HTML = "<p>About Me</p>", CreatedOn = DateTime.Now, CreatedBy = "SYSTEM" });
+            builder.Entity<ContentHtml>().HasData(new ContentHtml() { Id = Constants.ContentHtml.WorkWithMe, HTML = "<p>Work With Me</p>", CreatedOn = DateTime.Now, CreatedBy = "SYSTEM" });
+            builder.Entity<ContentHtml>().HasData(new ContentHtml() { Id = Constants.ContentHtml.MyWebsite, HTML = "<p>My Website</p>", CreatedOn = DateTime.Now, CreatedBy = "SYSTEM" });
+            builder.Entity<ContentHtml>().HasData(new ContentHtml() { Id = Constants.ContentHtml.Affiliates, HTML = "<p>Affiliates</p>", CreatedOn = DateTime.Now, CreatedBy = "SYSTEM" });
+            builder.Entity<ContentHtml>().HasData(new ContentHtml() { Id = Constants.ContentHtml.Resume, HTML = "<p>Resume</p>", CreatedOn = DateTime.Now, CreatedBy = "SYSTEM" });
+            builder.Entity<ContentHtml>().HasData(new ContentHtml() { Id = Constants.ContentHtml.Contact, HTML = "<p>Contact</p>", CreatedOn = DateTime.Now, CreatedBy = "SYSTEM" });
+            builder.Entity<ContentHtml>().HasData(new ContentHtml() { Id = Constants.ContentHtml.Head, HTML = "", CreatedOn = DateTime.Now, CreatedBy = "SYSTEM" });
+            builder.Entity<ContentHtml>().HasData(new ContentHtml() { Id = Constants.ContentHtml.Main, HTML = "", CreatedOn = DateTime.Now, CreatedBy = "SYSTEM" });
+            builder.Entity<ContentHtml>().HasData(new ContentHtml() { Id = Constants.ContentHtml.PrivacyPolicy, HTML = "", CreatedOn = DateTime.Now, CreatedBy = "SYSTEM" });
         }
 
-        public override void BuildQueries(ModelBuilder builder)
+        public override void AddKeylessEntities(ModelBuilder builder)
         {
-
-        }
-
-        public override void Seed()
-        {
-            DbSeed.Seed(this);
+         
         }
     }
 }

@@ -9,10 +9,9 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace DND.Application.CMS.Projects.Services
 {
-    [ResourceCollection(ResourceCollections.CMS.Projects.CollectionId)]
     public class ProjectApplicationService : ApplicationServiceEntityBase<Project, ProjectDto, ProjectDto, ProjectDto, ProjectDeleteDto, IAppUnitOfWork>, IProjectApplicationService
     {
-        public ProjectApplicationService(ApplicationervicesContext context, IAppUnitOfWork appUnitOfWork, IHubContext<ApiNotificationHub<ProjectDto>> hubContext)
+        public ProjectApplicationService(ApplicationServiceServicesContext context, IAppUnitOfWork appUnitOfWork, IHubContext<ApiNotificationHub<ProjectDto>> hubContext)
         : base(context, appUnitOfWork, hubContext)
         {
 

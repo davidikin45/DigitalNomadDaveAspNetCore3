@@ -25,9 +25,9 @@ namespace DND.Data.Identity
                .OnDelete(DeleteBehavior.Cascade);
         }
 
-        public override void BuildQueries(ModelBuilder builder)
+        public override void AddKeylessEntities(ModelBuilder builder)
         {
-
+           
         }
     }
 }

@@ -11,7 +11,6 @@ namespace DND.Web.Areas.Admin.Controllers.Authors
 {
     [Authorize(Roles ="admin")]
     [Area("Admin")]
-    [ResourceCollection(ResourceCollections.Blog.Authors.CollectionId)]
     [Route("admin/blog/authors")]
     public class AuthorsController : MvcControllerEntityAuthorizeBase<AuthorDto, AuthorDto, AuthorDto, AuthorDeleteDto, IAuthorApplicationService>
     {

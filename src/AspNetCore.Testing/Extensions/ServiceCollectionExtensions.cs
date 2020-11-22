@@ -1,9 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
-using Microsoft.CodeAnalysis;
+﻿using AspNetCore.Testing.Helpers;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
+using System;
+using System.Linq;
 using System.Reflection;
+using EntityFrameworkCore.Initialization;
+using EntityFrameworkCore.Initialization.NoSql;
+using AspNetCore.Mvc.Extensions;
+using System.Security.Claims;
 
 namespace AspNetCore.Testing.Extensions
 {
@@ -38,6 +45,49 @@ namespace AspNetCore.Testing.Extensions
             //        context.Compilation = context.Compilation.AddReferences(assemblies);
             //    };
             //});
+        }
+
+        public static IServiceCollection RemoveDbContext<TDbContext>(this IServiceCollection services)
+            where TDbContext : DbContext
+        {
+            var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<TDbContext>));
+
+            if (descriptor != null)
+            {
+                services.Remove(descriptor);
+            }
+
+            return services;
+        }
+
+        public static IServiceCollection RemoveDbContextNoSql<TContext>(this IServiceCollection services)
+        where TContext : DbContextNoSql
+        {
+            var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(TContext));
+
+            if (descriptor != null)
+            {
+                services.Remove(descriptor);
+            }
+
+            return services;
+        }
+
+        public static IServiceCollection AddTestAuthentication(this IServiceCollection services, string role, params Claim[] claims)
+        {
+            services.AddAuthentication(options => {
+                options.DefaultScheme = "Test";
+                options.DefaultAuthenticateScheme = "Test";
+                options.DefaultChallengeScheme = "Test";
+                options.DefaultForbidScheme = "Test";
+            })
+                   .AddScheme<TestAuthenticationSchemeOptions, TestAuthenticationHandler>(
+                       "Test", options => {
+                           options.Role = role;
+                           options.Claims = claims;
+                       });
+
+            return services;
         }
     }
 }

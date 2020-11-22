@@ -9,10 +9,9 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace DND.Application.CMS.ContentTexts.Services
 {
-    [ResourceCollection(ResourceCollections.CMS.ContentTexts.CollectionId)]
     public class ContentTextApplicationService : ApplicationServiceEntityBase<ContentText, ContentTextDto, ContentTextDto, ContentTextDto, ContentTextDeleteDto, IAppUnitOfWork>, IContentTextApplicationService
     {
-        public ContentTextApplicationService(ApplicationervicesContext context, IAppUnitOfWork appUnitOfWork, IHubContext<ApiNotificationHub<ContentTextDto>> hubContext)
+        public ContentTextApplicationService(ApplicationServiceServicesContext context, IAppUnitOfWork appUnitOfWork, IHubContext<ApiNotificationHub<ContentTextDto>> hubContext)
         : base(context, appUnitOfWork, hubContext)
         {
 

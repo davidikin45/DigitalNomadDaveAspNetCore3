@@ -13,10 +13,9 @@ using System.Threading.Tasks;
 
 namespace DND.Application.Blog.Locations.Services
 {
-    [ResourceCollection(ResourceCollections.Blog.Locations.CollectionId)]
     public class LocationApplicationService : ApplicationServiceEntityBase<Location, LocationDto, LocationDto, LocationDto, LocationDeleteDto, IAppUnitOfWork>, ILocationApplicationService
     {
-        public LocationApplicationService(ApplicationervicesContext context, IAppUnitOfWork unitOfWork, IHubContext<ApiNotificationHub<LocationDto>> hubContext)
+        public LocationApplicationService(ApplicationServiceServicesContext context, IAppUnitOfWork unitOfWork, IHubContext<ApiNotificationHub<LocationDto>> hubContext)
         : base(context, unitOfWork, hubContext)
         {
 

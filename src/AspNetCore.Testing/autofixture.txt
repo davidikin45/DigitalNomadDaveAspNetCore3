@@ -1,0 +1,84 @@
+﻿AutoFixture
+AutoFixture.XUnit2
+AutoFixture.SeedExtensions
+
+var fixture = new Fixture();
+fixture.Inject("StringValue"); or fixture.Freeze<string>(); or fixture.Register(() => DateTime.Now.Ticks.ToString());
+
+fixture.Create<int>();
+fixture.Create<decimal>();
+fixture.Create<DateTime>();
+fixture.Create<TimeSpan>();
+fixture.Create<Guid>();
+fixture.Create<EnumType>();
+fixture.Create<char>();
+fixture.Create<int>();
+fixture.CreateMany<int>(6);
+fixture.Create<string>("First_");
+fixture.CreateMany<string>("First_");
+
+fixture.Build<ObjectType>()
+.Without( x => x.Items)
+.Do(x => x.Items.Add("Item1"))
+.With(x => x.Name, "David")
+.Create();
+
+var list = new List<string>();
+fixture.AddManyTo(list, 10);
+fixture.AddManyTo(list, () => "hi");
+
+var rnd = new Random();
+fixture.AddManyTo(list, () => rnd.Next().ToString());
+
+var localPart = fixture.Create<EmailAddressLocalPart>().LocalPart;
+var domain = fixture.Create<DomainName>().Domain;
+var fullAddress = $"{localPart}@{domain}";
+
+var fullAddress = fixture.Create<MailAddress>().Address;
+
+fixture.Customizations.Add(new CustomSpecimenBuilder());
+public class CustomSpecimenBuilder : ISpecimenBuilder
+{
+	public object Create(object request, ISpecimenContext context)
+	{
+		 var propertyInfo = request as PropertyInfo;
+		 if(propertyInfo is null)
+		 {
+			return new NoSpecimen();
+		 }
+
+		 return "string";
+	}
+}
+
+xUnit
+[Theory]
+[InlineData(1,2)]
+
+-- AutoFixture.XUnit2 --
+[Theory]
+[AutoData(1, 2)]
+[InlineAutoData] //2 positive numbers
+[InlineAutoData(0)] //0, positive number
+[InlineAutoData(-5)] //negative number, positive number
+public void Add(int a, int b)
+
+-- AutoFixture.AutoMoq, Automatically creates moq versions of interfaces --
+var fixture = new Fixture();
+fixture.Customizations.Add(new AutoMoqCustomization());
+fixture.Build<ComplexObject>();
+
+[Theory]
+[AutoMoqData]
+public void SendEmailToGateway(EmailMessage message, [Frozen ]Mock<IEmailGateway> mockGateway, EmailMessageBuffer sut)
+{
+}
+
+[AttributeUsage(AttributeTargets.Method)]
+public sealed class AutoMoqDataAttribute : AutoDataAttribute
+{
+	public AutoMoqDataAttribute()
+	: base(() => new Fixture().Customize(new AutoMoqCustomization()))
+	{
+	}
+}

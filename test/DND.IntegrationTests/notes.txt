@@ -1,7 +1,65 @@
-﻿Must reference Microsoft.AspNetCore.Mvc.Testing
-
-10
-
+﻿Must reference Microsoft.AspNetCore.Mvc.Testing directly!!!
 I just ran into this same issue and found the root cause to be quite obscure. From the documentation, the .deps files should be copied to the integration test project's bin directory. This wasn't happening for me because was not explicitly referencing the Microsoft.AspNetCore.Mvc.Testing package from my integration test project. I had created a shared library with some utility functions that referenced that nuget package, so my integration test project indirectly referenced it.
-
 There's some custom build tasks in the Microsoft.AspNetCore.Mvc.Testing package that copy the referenced service deps.json files for you, so you must reference it directly from the integration test project in order to get those build tasks to run.
+
+By default xUnit runs tests in a different directory than build output.
+xunit.runner.json
+{
+  "shadowCopy": false
+}
+
+Change from Microsoft.NET.Sdk > Microsoft.NET.Sdk.Web so Properties/launchSettings.json is created.
+
+System.Net.Http.Json (Included in .NET 5)
+- GetFromJsonAsync<Model>();
+- Case-Insensitive deserialization
+- Validates response has success status code
+- Validates Content-Type header
+- Validates response includes content 
+
+
+-- Fakes and Mocks --
+var client = _factory.WithWebHostBuilder(builder =>
+{
+    builder.ConfigureTestServices(services =>
+    {
+        //Add fake (In memory) vs mock (register calls without testing)
+    });
+}).CreateClient();
+
+-- InMemory Config --
+var client = _factory.WithWebHostBuilder(builder =>
+{
+    builder.ConfigureAppConfiguration((ctx, config) =>
+    {
+        config.AddInMemoryCollection(new Dictionary<string, string>
+        {
+            {"Features:WeatherForecasting:EnableWeatherForecast" , globalEnabled.ToString()},
+            {"Features:Homepage:EnableWeatherForecast" , pageEnabled.ToString()}
+        });
+    });
+}).CreateClient();
+
+-- Roles --
+var client = _factory.WithWebHostBuilder(builder =>
+{
+    builder.ConfigureTestServices(services =>
+    {
+        services.AddTestAuthentiction("role");
+    });
+}).CreateClient();
+
+client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Test");
+
+OR 
+
+var client = _factory.CreateClientWithUserInRole(role);
+
+--InMemory DbContext --
+builder.ConfigureTestServices(services =>
+{
+    services.ReplaceDbContextWithInMemory(db => {
+        
+        db.SaveChanges();
+    })
+});

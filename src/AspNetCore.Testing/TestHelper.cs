@@ -19,7 +19,7 @@ namespace AspNetCore.Testing
 {
     public static class TestHelper
     {
-        public static ILoggerFactory xUnitCommandLoggerFactory(ITestOutputHelper output)
+        public static ILoggerFactory XunitCommandLoggerFactory(ITestOutputHelper output)
         => new ServiceCollection().AddLogging(builder =>
         {
             builder.AddAction(log => output.WriteLine(log))
@@ -54,16 +54,18 @@ namespace AspNetCore.Testing
 
         private static HttpContext FakeAuthenticatedHttpContext(string userId, string username, string authenticationType)
         {
-            var context = new DefaultHttpContext();
-            context.User = CreateClaimsPrincipal(userId, username, authenticationType);
-          
+            var context = new DefaultHttpContext
+            {
+                User = CreateClaimsPrincipal(userId, username, authenticationType)
+            };
+
             return context;
         }
 
-        private static Dictionary<string, IConfigurationRoot> _configs = new Dictionary<string, IConfigurationRoot>();
+        private static readonly Dictionary<string, IConfigurationRoot> _configs = new Dictionary<string, IConfigurationRoot>();
         public static IConfigurationRoot GetConfiguration(string environmentName = "Development")
         {
-            var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase.Substring(8));
+            var basePath = Directory.GetCurrentDirectory();
 
             if(!_configs.ContainsKey(environmentName))
             {
@@ -98,7 +100,6 @@ namespace AspNetCore.Testing
 
             Type type = typeof(TContext);
             ConstructorInfo ctor = type.GetConstructor(new[] { typeof(DbContextOptions) });
-            object instance = ctor.Invoke(new object[] { options });
 
             TContext context = (TContext)ctor.Invoke(new object[] { options });
 

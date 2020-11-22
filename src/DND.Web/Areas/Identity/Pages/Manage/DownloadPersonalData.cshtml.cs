@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using DND.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using Microsoft.Extensions.Options;
 
 namespace DND.Web.Areas.Identity.Pages.Manage
 {
@@ -16,13 +17,16 @@ namespace DND.Web.Areas.Identity.Pages.Manage
     {
         private readonly UserManager<User> _userManager;
         private readonly ILogger<DownloadPersonalDataModel> _logger;
+        private readonly JsonOptions _jsonOptions;
 
         public DownloadPersonalDataModel(
             UserManager<User> userManager,
-            ILogger<DownloadPersonalDataModel> logger)
+            ILogger<DownloadPersonalDataModel> logger,
+            IOptions<JsonOptions> jsonOptions)
         {
             _userManager = userManager;
             _logger = logger;
+            _jsonOptions = jsonOptions.Value;
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -45,7 +49,7 @@ namespace DND.Web.Areas.Identity.Pages.Manage
             }
 
             Response.Headers.Add("Content-Disposition", "attachment; filename=PersonalData.json");
-            return new FileContentResult(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(personalData)), "text/json");
+            return new FileContentResult(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(personalData, _jsonOptions.JsonSerializerOptions)), "text/json");
         }
     }
 }

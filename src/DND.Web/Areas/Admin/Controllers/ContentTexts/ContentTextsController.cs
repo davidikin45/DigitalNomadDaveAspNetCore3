@@ -12,7 +12,6 @@ namespace DND.Web.Areas.Admin.Controllers.ContentTexts
 {
     [Authorize(Roles = "admin")]
     [Area("Admin")]
-    [ResourceCollection(ResourceCollections.CMS.ContentTexts.CollectionId)]
     [Route("admin/cms/content-texts")]
     public class ContentTextsController : MvcControllerEntityAuthorizeBase<ContentTextDto, ContentTextDto, ContentTextDto, ContentTextDeleteDto, IContentTextApplicationService>
     {

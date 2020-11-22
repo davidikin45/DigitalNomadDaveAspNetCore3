@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNetCore.Mvc.Extensions" Version="1.0.40" />
+    <ProjectReference Include="..\AspNetCore.Mvc.Extensions\AspNetCore.Mvc.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

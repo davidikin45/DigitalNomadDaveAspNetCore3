@@ -26,6 +26,7 @@ using DND.Web.Areas.Frontend.Controllers.Home.Models;
 using DND.Web.Areas.Frontend.Controllers.Locations;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -97,7 +98,7 @@ namespace DND.Web.Areas.Frontend.Controllers.Home
             return View("Index", dto);
         }
 
-        [TypeFilter(typeof(FeatureAuthFilter), Arguments = new object[] { "Contact" })]
+        [FeatureGate(FeatureFlags.Contact)]
         [ResponseCache(CacheProfileName = "Cache24HourNoParams")]
         [Route("contact")]
         public ActionResult Contact()
@@ -105,7 +106,7 @@ namespace DND.Web.Areas.Frontend.Controllers.Home
             return View();
         }
 
-        [TypeFilter(typeof(FeatureAuthFilter), Arguments = new object[] { "WorkWithMe" })]
+        [FeatureGate(FeatureFlags.WorkWithMe)]
         [ResponseCache(CacheProfileName = "Cache24HourNoParams")]
         [Route("work-with-me")]
         public ActionResult WorkWithMe()
@@ -116,7 +117,7 @@ namespace DND.Web.Areas.Frontend.Controllers.Home
             return View();
         }
 
-        [Feature("MyWebsite")]
+        [FeatureGate(FeatureFlags.MyWebsite)]
         [ResponseCache(CacheProfileName = "Cache24HourNoParams")]
         [Route("my-website")]
         public ActionResult MyWebsite()
@@ -126,7 +127,7 @@ namespace DND.Web.Areas.Frontend.Controllers.Home
             return View();
         }
 
-        [Feature("About")]
+        [FeatureGate(FeatureFlags.About)]
         [ResponseCache(CacheProfileName = "Cache24HourNoParams")]
         [Route("about")]
         public ActionResult About()
@@ -137,7 +138,7 @@ namespace DND.Web.Areas.Frontend.Controllers.Home
             return View();
         }
 
-        [Feature("Resume")]
+        [FeatureGate(FeatureFlags.Resume)]
         [ResponseCache(CacheProfileName = "Cache24HourNoParams")]
         [Route("resume")]
         public ActionResult Resume()
@@ -147,7 +148,7 @@ namespace DND.Web.Areas.Frontend.Controllers.Home
             return View();
         }
 
-        [Feature("HelpFAQ")]
+        [FeatureGate(FeatureFlags.HelpFAQ)]
         [ResponseCache(CacheProfileName = "Cache24HourNoParams")]
         [Route("help-faq")]
         public ActionResult HelpFAQ()
@@ -157,7 +158,7 @@ namespace DND.Web.Areas.Frontend.Controllers.Home
             return View();
         }
 
-        [Feature("PrivacyPolicy")]
+        [FeatureGate(FeatureFlags.PrivacyPolicy)]
         [ResponseCache(CacheProfileName = "Cache24HourNoParams")]
         [Route("privacy-policy")]
         public ActionResult PrivacyPolicy()
@@ -165,7 +166,7 @@ namespace DND.Web.Areas.Frontend.Controllers.Home
             return View();
         }
 
-        [Feature("Contact")]
+        [FeatureGate(FeatureFlags.Contact)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("contact")]

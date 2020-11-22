@@ -11,7 +11,6 @@ namespace DND.Web.Areas.Admin.Controllers.Projects
 {
     [Authorize(Roles = "admin")]
     [Area("Admin")]
-    [ResourceCollection(ResourceCollections.CMS.Projects.CollectionId)]
     [Route("admin/cms/projects")]
     public class ProjectsController : MvcControllerEntityAuthorizeBase<ProjectDto, ProjectDto, ProjectDto, ProjectDeleteDto, IProjectApplicationService>
     {

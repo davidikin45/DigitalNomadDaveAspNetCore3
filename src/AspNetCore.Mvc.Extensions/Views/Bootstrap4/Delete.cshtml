@@ -1,0 +1,7 @@
+﻿@model dynamic
+
+@Html.ValidationSummary(true)
+@HtmlHelperPartialExtensions.Partial(Html, "~/Views/Bootstrap4/_Delete.cshtml", Model, Html.ViewData)
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

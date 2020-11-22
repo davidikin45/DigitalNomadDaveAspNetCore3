@@ -9,10 +9,9 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace DND.Application.CMS.Testimonials.Services
 {
-    [ResourceCollection(ResourceCollections.CMS.Testimonials.CollectionId)]
     public class TestimonialApplicationService : ApplicationServiceEntityBase<Testimonial, TestimonialDto, TestimonialDto, TestimonialDto, TestimonialDeleteDto, IAppUnitOfWork>, ITestimonialApplicationService
     {
-        public TestimonialApplicationService(ApplicationervicesContext context, IAppUnitOfWork appUnitOfWork, IHubContext<ApiNotificationHub<TestimonialDto>> hubContext)
+        public TestimonialApplicationService(ApplicationServiceServicesContext context, IAppUnitOfWork appUnitOfWork, IHubContext<ApiNotificationHub<TestimonialDto>> hubContext)
         : base(context, appUnitOfWork, hubContext)
         {
 

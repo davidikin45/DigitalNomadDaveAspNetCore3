@@ -1,19 +1,18 @@
 ﻿using AspNetCore.Mvc.Extensions.Context;
 using AspNetCore.Mvc.Extensions.Controllers.Mvc;
 using AspNetCore.Mvc.Extensions.Dtos;
-using AspNetCore.Mvc.Extensions.Features;
 using AspNetCore.Mvc.Extensions.Helpers;
-using AutoMapper;
 using DND.Application.Blog.Locations.Dtos;
 using DND.Application.Blog.Locations.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace DND.Web.Areas.Frontend.Controllers.TravelMap
 {
     [Area("Frontend")]
-    [Feature("TravelMap")]
+    [FeatureGate(FeatureFlags.TravelMap)]
     [Route("travel-map")]
     public class TravelMapController : MvcControllerBase
     {

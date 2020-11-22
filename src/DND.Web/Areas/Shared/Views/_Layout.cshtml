@@ -270,12 +270,9 @@
     <script>
         $('#instafeedPhotosSidebar').each(function () {
             var userFeed = new Instafeed({
-                get: 'user',
                 limit : 6,
-                userId: InstagramUserId,
                 accessToken: InstagramAccessToken,
                 template: '<div class="card" style="display:inline-block" ><a class="card-img-top" target="_blank" href="{{link}}" title="{{caption}}"><img src="{{image}}" /></a></div>',
-                resolution: 'low_resolution',
                 target: 'instafeedPhotosSidebar'
             });
             userFeed.run();

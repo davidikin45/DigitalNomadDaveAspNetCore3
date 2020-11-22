@@ -37,11 +37,11 @@ namespace DND.IntegrationTests.Data
             var dbName = "SqliteTest";
             var options = DbContextConnections.DbContextOptionsSqlite<AppContext>(dbName, log => _output.WriteLine(log));
 
-            using (var context = new AppContext(options, tenantService))
-            {
-                var dbInitializer = new AppContextInitializerDropMigrate();
-                await dbInitializer.InitializeAsync(context);
-            }
+            //using (var context = new AppContext(options, tenantService))
+            //{
+            //    var dbInitializer = new AppContextInitializerDropMigrate();
+            //    await dbInitializer.InitializeAsync(context);
+            //}
 
             using (var context = new AppContext(options, tenantService))
             {

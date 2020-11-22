@@ -11,11 +11,10 @@ using System.Threading.Tasks;
 
 namespace DND.Application.Blog.Categories.Services
 {
-    [ResourceCollection(ResourceCollections.Blog.Categories.CollectionId)]
     public class CategoryApplicationService : ApplicationServiceEntityBase<Category, CategoryDto, CategoryDto, CategoryDto, CategoryDeleteDto, IAppUnitOfWork>, ICategoryApplicationService
     {
 
-        public CategoryApplicationService(ApplicationervicesContext context, IAppUnitOfWork unitOfWork, IHubContext<ApiNotificationHub<CategoryDto>> hubContext)
+        public CategoryApplicationService(ApplicationServiceServicesContext context, IAppUnitOfWork unitOfWork, IHubContext<ApiNotificationHub<CategoryDto>> hubContext)
         : base(context, unitOfWork, hubContext)
         {
 

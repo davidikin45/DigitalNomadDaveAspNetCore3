@@ -15,10 +15,9 @@ using System.Threading.Tasks;
 
 namespace DND.Application.Blog.BlogPosts.Services
 {
-    [ResourceCollection(ResourceCollections.Blog.BlogPosts.CollectionId)]
     public class BlogPostApplicationService : ApplicationServiceEntityBase<BlogPost, BlogPostDto, BlogPostDto, BlogPostDto, BlogPostDeleteDto, IAppUnitOfWork>, IBlogPostApplicationService
     {
-        public BlogPostApplicationService(ApplicationervicesContext context, IAppUnitOfWork unitOfWork, IHubContext<ApiNotificationHub<BlogPostDto>> hubContext)
+        public BlogPostApplicationService(ApplicationServiceServicesContext context, IAppUnitOfWork unitOfWork, IHubContext<ApiNotificationHub<BlogPostDto>> hubContext)
         : base(context, unitOfWork, hubContext)
         {
 

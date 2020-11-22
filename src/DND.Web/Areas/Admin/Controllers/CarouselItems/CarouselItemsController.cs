@@ -11,7 +11,6 @@ namespace DND.Web.Areas.Admin.Controllers.CarouselItems
 {
     [Authorize(Roles = "admin")]
     [Area("Admin")]
-    [ResourceCollection(ResourceCollections.CMS.CarouselItems.CollectionId)]
     [Route("admin/cms/carousel-items")]
     public class CarouselItemsController : MvcControllerEntityAuthorizeBase<CarouselItemDto, CarouselItemDto, CarouselItemDto, CarouselItemDeleteDto, ICarouselItemApplicationService>
     {

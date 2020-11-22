@@ -11,7 +11,6 @@ namespace DND.Web.Areas.Admin.Controllers.Faqs
 {
     [Authorize(Roles = "admin")]
     [Area("Admin")]
-    [ResourceCollection(ResourceCollections.CMS.Faqs.CollectionId)]
     [Route("admin/cms/faqs")]
     public class FaqsController : MvcControllerEntityAuthorizeBase<FaqDto, FaqDto, FaqDto, FaqDeleteDto, IFaqApplicationService>
     {

@@ -81,7 +81,7 @@ namespace DND.IDP
 
         //Audience = Resource
         //Scope = Sub-Resource. If No scopes Audience = Scope
-
+        //https://docs.identityserver.io/en/release/reference/api_resource.html
         public static IEnumerable<ApiResource> GetApiResources()
         {
             return new List<ApiResource>
@@ -266,7 +266,7 @@ namespace DND.IDP
                     AccessTokenType = AccessTokenType.Reference, //More control over lifetime with Reference. Requires Api to have ApiSecret
                     RequirePkce = true,
                     RequireClientSecret = true, //turn on for private clients
-                    RequireConsent = true, //Consent screen
+                    RequireConsent = true, //Consent screen. This is typically only necessary for third-party clients.
                     IdentityTokenLifetime = 300,
                     AuthorizationCodeLifetime = 300,
                     AccessTokenLifetime = 1200,

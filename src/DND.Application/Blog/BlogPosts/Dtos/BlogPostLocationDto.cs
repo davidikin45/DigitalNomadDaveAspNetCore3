@@ -6,7 +6,6 @@ using DND.Application.Blog.Locations.Dtos;
 using DND.Domain.Blog.BlogPosts;
 using DND.Domain.Blog.Locations;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System;
 using System.ComponentModel.DataAnnotations;
 using AutoMapper.EquivalencyExpression;
@@ -26,7 +25,6 @@ namespace DND.Application.Blog.BlogPosts.Dtos
         [HiddenInput()]
         public int BlogPostId { get; set; }
 
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         [Render(ShowForGrid = false, ShowForDisplay = false, ShowForEdit = false, ShowForCreate = false)]
         public LocationDto Location { get; set; }
 

@@ -11,7 +11,6 @@ namespace DND.Web.Areas.Admin.Controllers.Categories
 {
     [Authorize(Roles = "admin")]
     [Area("Admin")]
-    [ResourceCollection(ResourceCollections.Blog.Categories.CollectionId)]
     [Route("admin/blog/categories")]
     public class CategoriesController : MvcControllerEntityAuthorizeBase<CategoryDto, CategoryDto, CategoryDto, CategoryDeleteDto, ICategoryApplicationService>
     {

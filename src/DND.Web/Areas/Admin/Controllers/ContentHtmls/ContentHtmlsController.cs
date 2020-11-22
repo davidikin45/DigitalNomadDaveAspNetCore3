@@ -11,7 +11,6 @@ namespace DND.Web.Areas.Admin.Controllers.ContentHtmls
 {
     [Authorize(Roles = "admin")]
     [Area("Admin")]
-    [ResourceCollection(ResourceCollections.CMS.ContentHtmls.CollectionId)]
     [Route("admin/cms/content-htmls")]
     public class ContentHtmlsController : MvcControllerEntityAuthorizeBase<ContentHtmlDto, ContentHtmlDto, ContentHtmlDto, ContentHtmlDeleteDto, IContentHtmlApplicationService>
     {

@@ -4,16 +4,13 @@ using AspNetCore.Mvc.Extensions.Context;
 using AspNetCore.Mvc.Extensions.Controllers.Mvc;
 using AspNetCore.Mvc.Extensions.Data.RepositoryFileSystem;
 using AspNetCore.Mvc.Extensions.Dtos;
-using AspNetCore.Mvc.Extensions.Features;
 using AspNetCore.Mvc.Extensions.Helpers;
-using AspNetCore.Mvc.Extensions.Mapping;
-using AspNetCore.Mvc.Extensions.UI;
 using AspNetCore.Specification.UI;
-using AutoMapper;
 using DND.Application;
 using DND.Application.Blog;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement.Mvc;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,7 +18,7 @@ using System.Threading.Tasks;
 namespace DND.Web.Areas.Frontend.Controllers.Gallery
 {
     [Area("Frontend")]
-    [Feature("Gallery")]
+    [FeatureGate(FeatureFlags.Gallery)]
     [Route("gallery")]
     public class GalleryController : MvcControllerBase
     {

@@ -15,7 +15,7 @@ namespace DND.Application.Blog
         public IAuthorApplicationService AuthorApplicationService { get; private set; }
 
         public BlogApplicationService(
-            ApplicationervicesContext context,
+            ApplicationServiceServicesContext context,
             IBlogPostApplicationService blogPostApplicationService,
             ICategoryApplicationService categoryApplicationService,
             ITagApplicationService tagApplicationService,

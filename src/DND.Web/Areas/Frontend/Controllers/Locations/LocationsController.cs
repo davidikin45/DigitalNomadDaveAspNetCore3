@@ -14,6 +14,7 @@ using DND.Application.Blog.Locations.Dtos;
 using DND.Application.Blog.Locations.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement.Mvc;
 using System;
 using System.IO;
 using System.Linq;
@@ -22,7 +23,7 @@ using System.Threading.Tasks;
 namespace DND.Web.Areas.Frontend.Controllers.Locations
 {
     [Area("Frontend")]
-    [Feature("Locations")]
+    [FeatureGate(FeatureFlags.Locations)]
     [Route("locations")]
     public class LocationsController : MvcControllerBase
     {
@@ -46,7 +47,7 @@ namespace DND.Web.Areas.Frontend.Controllers.Locations
 
             try
             {
-                var dataTask = _locationService.SearchAsync(cts.Token, null, search, l => !string.IsNullOrEmpty(l.Album) && !string.IsNullOrEmpty(l.UrlSlug), orderBy, p - 1, pageSize);
+                var dataTask = _locationService.SearchAsync(cts.Token, null, search, l => !string.IsNullOrEmpty(l.Album) && !string.IsNullOrEmpty(l.UrlSlug), orderBy, p, pageSize);
 
                 await TaskHelper.WhenAllOrException(cts, dataTask);
 
@@ -98,7 +99,7 @@ namespace DND.Web.Areas.Frontend.Controllers.Locations
             {
                 if (ex is OperationCanceledException)
                 {
-                    throw ex;
+                    throw;
                 }
                 else
                 {

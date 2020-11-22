@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Routing;
 namespace DND.Web.ApiControllers.CMS
 {
     [Authorize(Roles = "admin")]
-    [ResourceCollection(ResourceCollections.CMS.ContentTexts.CollectionId)]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/cms/content-texts")]
     public class ContentTextsController : ApiControllerEntityAuthorizeBase<ContentTextDto, ContentTextDto, ContentTextDto, ContentTextDeleteDto, IContentTextApplicationService>

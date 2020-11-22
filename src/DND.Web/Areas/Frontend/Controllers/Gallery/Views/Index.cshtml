@@ -65,11 +65,8 @@
     @section scripts {
         <script type="text/javascript">
             var userFeed = new Instafeed({
-                get: 'user',
-                userId: '@appSettings.InstagramUserId',
                 accessToken: '@appSettings.InstagramAccessToken',
                 template: '<img alt="Instagram" class="card-img-top" src="{{image}}" />',
-                resolution: 'standard_resolution',
                 limit: 1,
                 target: 'instagram-album'
             });
