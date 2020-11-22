@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
 
 namespace DND.IDP.Controllers.Account
@@ -224,8 +225,8 @@ namespace DND.IDP.Controllers.Account
             if (ModelState.IsValid)
             {
                 // read identity from the temporary cookie
-                var info = await HttpContext.Authentication.GetAuthenticateInfoAsync(IdentityServerConstants.DefaultCookieAuthenticationScheme + ".2FA");
-                var tempUser = info?.Principal;
+                //var info = await HttpContext.Authentication.GetAuthenticateInfoAsync(IdentityServerConstants.DefaultCookieAuthenticationScheme + ".2FA");
+                IPrincipal tempUser = null;// info?.Principal;
                 if (tempUser == null)
                 {
                     throw new Exception("2FA error");
