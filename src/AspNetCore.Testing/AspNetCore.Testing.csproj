@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="0.14.0" />
-    <PackageReference Include="Autofac.AspNetCore.Extensions" Version="2.0.14" />
+    <PackageReference Include="Autofac.AspNetCore.Extensions" Version="2.0.15" />
     <PackageReference Include="AutoFixture" Version="4.14.0" />
     <PackageReference Include="AutoFixture.AutoMoq" Version="4.14.0" />
     <PackageReference Include="AutoFixture.SeedExtensions" Version="4.14.0" />
