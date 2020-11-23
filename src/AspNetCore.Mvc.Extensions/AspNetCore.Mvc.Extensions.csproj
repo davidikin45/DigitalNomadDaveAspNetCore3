@@ -43,7 +43,7 @@
   <ItemGroup>
     <!--https://andrewlock.net/converting-a-netstandard-2-library-to-netcore-3/-->
     <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="3.1.2" />
-    <PackageReference Include="AspNetCore.Mvc.SelectList" Version="1.1.14" />
+    <PackageReference Include="AspNetCore.Mvc.SelectList" Version="1.2.14" />
     <PackageReference Include="AspNetCore.Mvc.UrlLocalization" Version="1.0.11" />
     <PackageReference Include="AspNetCore.Specification" Version="1.0.3" />
     <PackageReference Include="ClosedXML" Version="0.95.3" />
