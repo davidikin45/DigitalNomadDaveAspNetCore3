@@ -33,12 +33,10 @@
 @section scripts {
     <script type="text/javascript">
         var userFeed = new Instafeed({
-            get: 'user',
-            userId: '@appSettings.InstagramUserId',
             accessToken: '@appSettings.InstagramAccessToken',
-            template: '<div class="card card-spacer-bottom" style="display:inline-block" >{{model.template}}<div class="card-body"><p class="card-text"><small class="text-muted pull-left">{{likes}} likes</small><small class="text-muted pull-right">{{comments}} comments</small></p><p class="card-text voffset2"><a class="instagram-caption" href="{{link}}" target="_blank">{{caption}}</a></p></div></div>',
-            resolution: 'standard_resolution',
+            template: '<div class="card card-spacer-bottom" style="display:inline-block" >{{template}}<div class="card-body"><p class="card-text voffset2"><a class="instagram-caption" href="{{link}}" target="_blank">{{caption}}</a></p></div></div>',
             filter: function (image) {
+                console.log(image);
                 if(image.type === 'video')
                 {
                     var src = image.videos.standard_resolution.url;
@@ -46,10 +44,9 @@
                 }
                 else
                 {
-                    var instafeed = new Instafeed({});
-                    var caption = instafeed._getObjectProperty(image, 'caption.text');
+                    var caption = image.caption;
                     var link = image.link;
-                    var src = image.images.standard_resolution.url;
+                    var src = image.image;
                     image.template = '<a class="card-img-top gallery-image" target="_blank" href="' + link + '" title="' + caption +'"><img src="' + src + '" alt="' + caption + '" /></a>';
                 }
                 return true;
