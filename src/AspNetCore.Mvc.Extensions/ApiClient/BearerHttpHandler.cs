@@ -35,9 +35,6 @@ namespace AspNetCore.Mvc.Extensions.ApiClient
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             }
 
-
-
-
             return base.SendAsync(request, cancellationToken);
         }
     }

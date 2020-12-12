@@ -178,6 +178,7 @@ namespace DND.IDP
                 //Greater control over the user session timeout via spec-defined mechanisms.
                 //Consistency across various use cases (SPA, native mobile apps, native desktop apps, web applications, etc).
 
+               //Public client
                new Client
                 {
                     ClientName = "Spa",
@@ -216,6 +217,7 @@ namespace DND.IDP
                     AccessTokenLifetime = 1200,
                     AllowOfflineAccess = false, //Refresh Tokens
                 },
+                //Public client
                 //Native Mobile App
                 //If the Application is a native app, then the Authorization Code Flow with PKCE (Authorization Code Grant using Proof Key for Code Exchange) should be used.
                  new Client
@@ -255,6 +257,7 @@ namespace DND.IDP
                     AccessTokenLifetime = 1200,
                     AllowOfflineAccess = false, //Refresh Tokens
                 },
+                 //Confidential client
                  //Calling APIs on behalf of user
                 new Client
                 {
@@ -265,8 +268,8 @@ namespace DND.IDP
                     //https://www.scottbrady91.com/OpenID-Connect/ASPNET-Core-using-Proof-Key-for-Code-Exchange-PKCE
                     AccessTokenType = AccessTokenType.Reference, //More control over lifetime with Reference. Requires Api to have ApiSecret
                     RequirePkce = true,
-                    RequireClientSecret = true, //turn on for private clients
-                    RequireConsent = true, //Consent screen. This is typically only necessary for third-party clients.
+                    RequireClientSecret = true, //turn on for confidential clients
+                    RequireConsent = false, //Consent screen. This is typically only necessary for third-party clients.
                     IdentityTokenLifetime = 300,
                     AuthorizationCodeLifetime = 300,
                     AccessTokenLifetime = 1200,

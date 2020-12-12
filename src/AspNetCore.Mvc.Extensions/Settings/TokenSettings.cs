@@ -7,8 +7,8 @@ namespace AspNetCore.Mvc.Extensions.Settings
     {
         //OpenID Connect
         public string Authority { get; set; }
-        public string ClientId { get; set; }
-        public string ClientSecret { get; set; } //Reference Tokens only
+        public string ApiName { get; set; }
+        public string ApiSecret { get; set; } //Reference Tokens only
 
         public string LocalIssuer { get; set; }
         public string ExternalIssuers { get; set; }

@@ -685,8 +685,8 @@ namespace AspNetCore.Mvc.Extensions
                 //https://wildermuth.com/2017/08/19/Two-AuthorizationSchemes-in-ASP-NET-Core-2
                 authenticationBuilder.AddJwtAuthentication(
                    tokenSettings.Authority,
-                   tokenSettings.ClientId,
-                   tokenSettings.ClientSecret, //Required for Reference Token
+                   tokenSettings.ApiName, //This is not IDP Client.
+                   tokenSettings.ApiSecret, //This is not IDP Client. Required for Reference Token
                    tokenSettings.Key,
                    tokenSettings.PublicKeyPath,
                    tokenSettings.PublicCertificatePath,

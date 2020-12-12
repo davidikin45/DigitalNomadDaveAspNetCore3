@@ -1827,8 +1827,8 @@ namespace AspNetCore.Mvc.Extensions
 
         public static AuthenticationBuilder AddJwtAuthentication(this AuthenticationBuilder authenticationBuilder,
            string authority,
-           string clientId,
-           string clientSecret,
+           string apiName,
+           string apiSecret,
            string bearerTokenKey,
            string bearerTokenPublicSigningKeyPath,
            string bearerTokenPublicSigningCertificatePath,
@@ -1891,8 +1891,9 @@ namespace AspNetCore.Mvc.Extensions
 
             authenticationBuilder.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
             {
-                options.Authority = authority;
-                options.Audience = clientId;
+                //https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/blob/b0867057c1b98ead823eed37869b5656ed2ba695/src/Microsoft.IdentityModel.Protocols.OpenIdConnect/Configuration/OpenIdConnectConfigurationRetriever.cs
+                options.Authority = authority; //Downloads the signing keys
+                options.Audience = apiName; //Sets TokenValidationParameters.ValidAudience
 
                 options.SaveToken = true; //var accessToken = await HttpContext.GetTokenAsync("access_token"); //forward the JWT in an outgoing request.
                 options.TokenValidationParameters = new TokenValidationParameters()
@@ -1933,16 +1934,16 @@ namespace AspNetCore.Mvc.Extensions
                 };
 
                 //https://leastprivilege.com/2020/07/06/flexible-access-token-validation-in-asp-net-core/
-                options.ForwardDefaultSelector = !string.IsNullOrEmpty(authority) && !string.IsNullOrEmpty(clientSecret)? IdentityModel.AspNetCore.AccessTokenValidation.Selector.ForwardReferenceToken("introspection") : null;
+                options.ForwardDefaultSelector = !string.IsNullOrEmpty(authority) && !string.IsNullOrEmpty(apiSecret) ? IdentityModel.AspNetCore.AccessTokenValidation.Selector.ForwardReferenceToken("introspection") : null;
             });
 
-            if(!string.IsNullOrEmpty(authority) && !string.IsNullOrEmpty(clientSecret))
+            if(!string.IsNullOrEmpty(authority) && !string.IsNullOrEmpty(apiSecret))
             {
                 authenticationBuilder.AddOAuth2Introspection("introspection", options =>
                   {
                       options.Authority = authority;  //base-address of your identityserver
-                      options.ClientId = clientId; //name of the API resource. checks if the token has a matching audience (or short aud) claim. scopes are not validated automatically.
-                      options.ClientSecret = clientSecret;
+                      options.ClientId = apiName; //name of the API resource. checks if the token has a matching audience (or short aud) claim. scopes are not validated automatically.
+                      options.ClientSecret = apiSecret;
                       options.EnableCaching = true; //Caches response from introspection endpoint.
                       options.CacheDuration = TimeSpan.FromMinutes(10); // that's the default
                   });
