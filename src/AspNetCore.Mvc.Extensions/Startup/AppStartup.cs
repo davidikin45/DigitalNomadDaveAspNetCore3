@@ -656,7 +656,7 @@ namespace AspNetCore.Mvc.Extensions
             {
                 Logger.LogInformation($"Configuring JWT Authentication" + Environment.NewLine +
                                        $"Authority:{tokenSettings.Authority ?? ""}" + Environment.NewLine +
-                                       $"ClientId:{tokenSettings.ClientId ?? ""}" + Environment.NewLine +
+                                       $"ApiName:{tokenSettings.ApiName ?? ""}" + Environment.NewLine +
                                        $"Key:{tokenSettings.Key ?? ""}" + Environment.NewLine +
                                        $"PublicKeyPath: {tokenSettings.PublicKeyPath ?? ""}" + Environment.NewLine +
                                        $"PublicCertificatePath: {tokenSettings.PublicCertificatePath ?? ""}" + Environment.NewLine +
