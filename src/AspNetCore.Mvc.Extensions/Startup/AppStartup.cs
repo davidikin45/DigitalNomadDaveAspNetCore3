@@ -40,6 +40,7 @@ using Ben.Diagnostics;
 using FluentValidation.AspNetCore;
 using Hangfire.AspNetCore.Extensions;
 using Hangfire.AspNetCore.Multitenant;
+using IdentityModel.AspNetCore.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -1654,6 +1655,9 @@ namespace AspNetCore.Mvc.Extensions
             Logger.LogInformation("Configuring Api");
 
             var appSettings = GetSettings<AppSettings>("AppSettings");
+
+            //https://leastprivilege.com/2020/07/06/flexible-access-token-validation-in-asp-net-core/
+            services.AddScopeTransformation(); //string seperated scopes. By default Identity Server will return as an array instead of space seperated.
 
             var builder = services.AddMvc(options =>
             {

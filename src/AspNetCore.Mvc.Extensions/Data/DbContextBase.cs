@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -90,17 +91,27 @@ namespace AspNetCore.Mvc.Extensions.Data
                 {
                     //Output commands to console window
                     optionsBuilder.UseLoggerFactory(CommandLoggerFactory);
+
+                    //EF Core 5.0
+                    //optionsBuilder.LogTo(Console.WriteLine, new [] {DbLoggerCategory.Database.Command.Name}, LogLevel.Information).LogTo(log => Debug.WriteLine(log), new [] {DbLoggerCategory.Database.Command.Name}, LogLevel.Information);
                 }
             }
 
+            if(!optionsBuilder.IsConfigured)
+            {
+                //optionsBuilder.UseSqlServer("")
+                //.LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information).LogTo(log => Debug.WriteLine(log), new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
+                //.EnableSensitiveDataLogging();
+            }
 
-            //Enable Parameter values otherwise ?
+            //Enable Parameter values otherwise ?. name= '?' vs name='David'
             optionsBuilder.EnableSensitiveDataLogging();
 
             //optionsBuilder.ReplaceService<IMigrationsAnnotationProvider, CompositeMigrationsAnnotationsProvider>();
             //optionsBuilder.ReplaceService<IRelationalAnnotationProvider, CompositeRelationalAnnotationsProvider>();
         }
 
+        //Override Conventions with Fluent API or Data Annotations
         protected override void OnModelCreating(ModelBuilder builder)
         {
 

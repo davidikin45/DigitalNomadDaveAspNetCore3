@@ -1,0 +1,6 @@
+﻿System.Net.Http.Json (Included in .NET 5)
+- GetFromJsonAsync<Model>();
+- Case-Insensitive deserialization
+- Validates response has success status code
+- Validates Content-Type header
+- Validates response includes content 

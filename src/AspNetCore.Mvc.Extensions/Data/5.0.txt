@@ -1,0 +1,47 @@
+﻿Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite
+Microsoft.EntityFrameworkCore.Sqlite
+Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite
+Microsoft.EntityFrameworkCore.InMemory
+NetTopologySuite
+Microsoft.EntityFrameworkCore.Tools = Visual Studio + CLI
+Microsoft.EntityFrameworkCore.Design = CLI
+
+EF Core Power Tools > Add DbContext Model Diagram
+
+public DbSet<ViewName> {get; set;}
+//EF Core wont track entity when marked with HasNoKey
+modelBuilder.Entity<ViewName>().HasNoKey().ToView("ViewName");
+
+protected override void Up(MigrationBuilder migrationBuilder)
+{
+	migrationBuilder.Sql(
+	@"CREATE OR ALTER VIEW dbo.ViewName
+	AS
+	SELECT A, B, C
+	FROM XYZ
+	");
+}
+
+protected override void Down(MigrationBuilder migrationBuilder)
+{
+	migrationBuilder.Sql("DROP VIEW dbo.ViewName");
+}
+
+Add-Migration
+Script-Migration
+Get-Migration 
+
+int vs nullable<int> foreign key. A zero-or-one-to-many means that the object on the "many" side of the relationship can exist even if not related to any object on the "one" side. In the factory/product example, this would mean that a product can exists even if no factory produces it.
+many to many automatic or can explicitly use join payload entity.
+
+modelBuilder.Entity<Samurai>()
+.HasMany(s => s.Battles)
+.WithMany(b => b.Samurais)
+.UsingEntity<BattleSamurai>
+(bs => bs.HasOne<Battle>().WithMany(), 
+bs => bs.HasOne<Samurai>().WithMany());
+
+EF.Functions.Like(s.Name, "%abc%") or s.Name.Contains("abc")
+
+For Blazor use services.AddDbContextFactory<DbContext>(options => options.UeeSqlite($"Data Source={nameof(DbContext)}.db"));

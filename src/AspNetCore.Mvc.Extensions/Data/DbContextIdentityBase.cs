@@ -79,6 +79,14 @@ namespace AspNetCore.Mvc.Extensions.Data
                     optionsBuilder.UseLoggerFactory(CommandLoggerFactory);
                 }
             }
+
+            if (!optionsBuilder.IsConfigured)
+            {
+                //optionsBuilder.UseSqlServer("")
+                //.LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information).LogTo(log => Debug.WriteLine(log), new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
+                //.EnableSensitiveDataLogging();
+            }
+
             optionsBuilder.EnableSensitiveDataLogging();
 
             //optionsBuilder.ReplaceService<IMigrationsAnnotationProvider, CompositeMigrationsAnnotationsProvider>();
