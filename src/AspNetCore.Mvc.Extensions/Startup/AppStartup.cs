@@ -1394,7 +1394,7 @@ namespace AspNetCore.Mvc.Extensions
                  }
              })
 
-            //.NET Core 2.2
+            //.NET Core 2.2 OR MVC Only
             //.UserMustBeAuthorized(authorizationSettings.UserMustBeAuthorizedByDefault) //The authorization filter will be executed on any request that enters the MVC middleware and maps to a valid MVC action.
 
             .AddMvcDisplayConventions(
