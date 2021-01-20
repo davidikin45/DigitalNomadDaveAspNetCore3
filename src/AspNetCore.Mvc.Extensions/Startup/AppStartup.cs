@@ -1841,6 +1841,24 @@ namespace AspNetCore.Mvc.Extensions
             //     return Refit.RestService.For<IClient>(c);
             // });
 
+           // HttpClient pointing back to itself
+           // services.AddHttpClient("default", (sp, client) =>
+           // {
+           //     // Get the address that the app is currently running at
+           //     var server = sp.GetRequiredService<IServer>();
+           //     var addressFeature = server.Features.Get<IServerAddressesFeature>();
+           //     string baseAddress = addressFeature.Addresses.First();
+           //     client.BaseAddress = new Uri(baseAddress);
+           // })
+           //.AddHttpMessageHandler<CookieHttpHandler>() //1
+           //.AddHttpMessageHandler<BlazorDisplaySpinnerAutomaticallyHttpMessageHandler>() //2
+           //.ConfigurePrimaryHttpMessageHandler(handler => new HttpClientHandler()
+           //{
+           //    AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip | DecompressionMethods.Brotli
+           //});
+
+           // services.AddTransient<HttpClient>(sp => sp.GetService<IHttpClientFactory>().CreateClient("default"));
+
             //using Refit.HttpClientFactory
             //https://github.com/reactiveui/refit
 
