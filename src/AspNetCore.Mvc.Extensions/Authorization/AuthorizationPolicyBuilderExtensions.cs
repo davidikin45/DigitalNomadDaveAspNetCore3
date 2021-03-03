@@ -11,7 +11,7 @@ namespace AspNetCore.Mvc.Extensions.Authorization
         public static AuthorizationPolicyBuilder RequireScope(this AuthorizationPolicyBuilder builder, params string[] scopes)
         {
             //https://leastprivilege.com/2020/07/06/flexible-access-token-validation-in-asp-net-core/
-            var c = new ClaimsAuthorizationRequirement("scope", scopes); //IdentityModel.AspNetCore.AccessTokenValidation services.AddScopeTransformation()
+            var c = new ClaimsAuthorizationRequirement("scope", scopes); //IdentityModel.AspNetCore.AccessTokenValidation services.AddScopeTransformation() + IdentityModel.AspNetCore.OAuth2Introspection. Remove AddIdentityServerAuthentication IdentityServer4.AccessTokenValidation
 
             builder.Requirements.Add(new ScopeAuthorizationRequirement(scopes));
             return builder;
@@ -20,7 +20,7 @@ namespace AspNetCore.Mvc.Extensions.Authorization
         public static AuthorizationPolicyBuilder RequireScope(this AuthorizationPolicyBuilder builder, IEnumerable<string> scopes)
         {
             //https://leastprivilege.com/2020/07/06/flexible-access-token-validation-in-asp-net-core/
-            var c = new ClaimsAuthorizationRequirement("scope", scopes); //IdentityModel.AspNetCore.AccessTokenValidation services.AddScopeTransformation()
+            var c = new ClaimsAuthorizationRequirement("scope", scopes); //IdentityModel.AspNetCore.AccessTokenValidation services.AddScopeTransformation() + IdentityModel.AspNetCore.OAuth2Introspection. Remove AddIdentityServerAuthentication IdentityServer4.AccessTokenValidation
 
             builder.Requirements.Add(new ScopeAuthorizationRequirement(scopes));
             return builder;

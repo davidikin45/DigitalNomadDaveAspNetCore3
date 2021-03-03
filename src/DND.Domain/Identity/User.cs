@@ -7,6 +7,8 @@ namespace DND.Domain.Identity
     //[PersonalData]
     //Deleted when the Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml Razor Page calls UserManager.Delete.
     //Included in the downloaded data by the Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml Razor Page.
+    //https://korzh.com/blog/add-extra-user-claims-aspnet-core-webapp
+    //https://github.com/dotnet/aspnetcore/blob/c925f99cddac0df90ed0bc4a07ecda6b054a0b02/src/Identity/Extensions.Core/src/UserClaimsPrincipalFactory.cs
     public class User : IdentityUser, IEntityTenant
     {
         public override string UserName
