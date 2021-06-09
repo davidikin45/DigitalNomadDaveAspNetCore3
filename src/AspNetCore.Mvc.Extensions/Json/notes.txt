@@ -4,3 +4,7 @@
 - Validates response has success status code
 - Validates Content-Type header
 - Validates response includes content 
+
+
+/https://www.stevejgordon.co.uk/using-httpcompletionoption-responseheadersread-to-improve-httpclient-performance-dotnet
+//https://www.stevejgordon.co.uk/sending-and-receiving-json-using-httpclient-with-system-net-http-json
